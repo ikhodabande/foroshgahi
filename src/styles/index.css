@@ -3,11 +3,7 @@
 @tailwind utilities;
 
 :root {
-  font-family: iranyekan;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: iranyekan; 
 }
 
 * {
@@ -19,7 +15,7 @@
 @layer base {
   @font-face {
     font-family: 'iranyekan';
-    src: url(../assets/Fonts/Iranyekan/iranyekanwebbold.ttf) format('truetype');
+    src: url(../assets/Fonts/Iranyekan/iranyekan.ttf) format('truetype');
   }
 }
 @layer base {

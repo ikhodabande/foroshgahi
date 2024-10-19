@@ -8,9 +8,9 @@ export const AvatarModule = () => {
         <div className="w-[60px] h-[60px] rounded-full bg-background shadow-lg flex items-center justify-center">
           <IoPerson  className="text-lg"/>
         </div>
-        <div className="flex flex-col items-center justify-center m-2">
-            <p>کاربر</p>
-            <p>33%</p>
+        <div className="flex flex-col items-center justify-center my-3">
+            <p className="text-sm">کاربر</p>
+            <p className="text-sm">33%</p>
         </div>
       </div>
     </>

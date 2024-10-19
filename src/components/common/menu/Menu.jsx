@@ -35,11 +35,11 @@ export const Menu = () => {
     },
   ];
   return (
-    <div className="h-[60px] flex items-center justify-around py-1 bg-background">
+    <div className="h-[60px] flex items-center justify-around py-1 bg-white border-t-2">
       {data.map((item) => (
-        <Link className="flex flex-col items-center">
+        <Link className="flex flex-col items-center text-gray-600">
           <i>{item.icon}</i>
-          <p className="text-xs">{item.name}</p>
+          <p className="text-xs text-gray-600 font-iranyekanBold">{item.name}</p>
         </Link>
       ))}
     </div>
