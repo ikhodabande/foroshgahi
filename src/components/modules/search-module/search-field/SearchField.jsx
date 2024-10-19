@@ -6,27 +6,27 @@ export const SearchField = () => {
     {
       name: "کفش",
       price: "200",
-      image: "https://picsum.photos/150/150",
+      image: "https://picsum.photos/150/140",
     },
     {
       name: "لباس",
       price: "200",
-      image: "https://picsum.photos/150/150",
+      image: "https://picsum.photos/150/140",
     },
     {
       name: "پیراهن",
       price: "200",
-      image: "https://picsum.photos/150/150",
+      image: "https://picsum.photos/150/140",
     },
     {
       name: "فرش",
       price: "200",
-      image: "https://picsum.photos/150/150",
+      image: "https://picsum.photos/150/140",
     },
     {
       name: "موبایل",
       price: "200",
-      image: "https://picsum.photos/150/150",
+      image: "https://picsum.photos/150/140",
     },
   ];
   return (
