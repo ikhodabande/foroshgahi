@@ -34,3 +34,47 @@
     src: url(../assets/Fonts/Iranyekan/iranyekanweblight.ttf) format('truetype');
   }
 }
+
+@layer base {
+  :root {
+    --color-background: #f2edf3;
+    --color-navBack: #ffffff;
+    --color-text: #213547;
+    --color-primary: #1677ff;
+    --color-iconary: #ffffff;
+    --color-info: #33b5e5;
+    --color-warn: #dd2020;
+    --color-error: #fe4e4e;
+    --color-border: #c7c7c775;
+    --color-alert: #ffcc00;
+    --color-white: #ffffff;
+  }
+  :root.dark {
+    --color-background: #000000;
+    --color-navBack: #191c24;
+    --color-text: #ffffff;
+    --color-primary: #1677ff;
+    --color-iconary: #213547;
+    --color-info: #33b5e5;
+    --color-warn: #dd2020;
+    --color-error: #fe4e4e;
+    --color-border: #c7c7c744;
+    --color-alert: #ffcc00;
+    --color-white: #ffffff;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+}
+::-webkit-scrollbar-track {
+  background: #aaaaaa;
+}
+::-webkit-scrollbar-thumb {
+  background: #07244e70;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #07234b;
+  cursor: grab;
+}
