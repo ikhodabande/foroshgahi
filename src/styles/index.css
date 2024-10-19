@@ -65,7 +65,9 @@
 }
 
 ::-webkit-scrollbar {
-  width: 2px;
+  width: 1px;
+  height: 5px;
+  display: none;
 }
 ::-webkit-scrollbar-track {
   background: #aaaaaa;

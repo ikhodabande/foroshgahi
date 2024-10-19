@@ -15,22 +15,22 @@ export const Menu = () => {
   const data = [
     {
       name: "خانه",
-      icon: <RiHome2Line className="text-display-lg" />,
+      icon: <RiHome2Line className="text-menu-lg" />,
       link: "",
     },
     {
       name: "دسته بندی",
-      icon: <BiSolidCategory className="text-display-lg" />,
+      icon: <BiSolidCategory className="text-menu-lg" />,
       link: "",
     },
     {
       name: "سفارشات",
-      icon: <RiShoppingBag4Line className="text-display-lg" />,
+      icon: <RiShoppingBag4Line className="text-menu-lg" />,
       link: "",
     },
     {
       name: "پروفایل",
-      icon: <RiProfileLine className="text-display-lg" />,
+      icon: <RiProfileLine className="text-menu-lg" />,
       link: "",
     },
   ];
