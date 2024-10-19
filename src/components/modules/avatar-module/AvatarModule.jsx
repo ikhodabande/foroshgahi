@@ -5,8 +5,8 @@ export const AvatarModule = () => {
   return (
     <>
       <div className="w-[80px] h-[150px]  flex flex-col items-center justify-center mx-1">
-        <div className="w-[60px] h-[60px] rounded-full bg-background shadow-lg flex items-center justify-center">
-          <IoPerson  className="text-lg"/>
+        <div className="w-[60px] h-[60px] rounded-full bg-webcom-gradient shadow-lg flex items-center justify-center">
+          <IoPerson  className="text-lg text-white"/>
         </div>
         <div className="flex flex-col items-center justify-center my-3">
             <p className="text-sm">کاربر</p>

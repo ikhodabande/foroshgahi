@@ -35,7 +35,7 @@ export const Menu = () => {
     },
   ];
   return (
-    <div className="h-[60px] flex items-center justify-around py-1 bg-white border-t-2">
+    <div className="h-[60px] sm:max-w-[370px] mx-auto flex items-center justify-around py-1 bg-white border-t-2">
       {data.map((item) => (
         <Link className="flex flex-col items-center text-gray-600">
           <i>{item.icon}</i>

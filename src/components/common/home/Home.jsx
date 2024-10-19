@@ -30,10 +30,10 @@ export const Home = () => {
           </div>
         </div>
 
-        <div className="w-full flex items-center justify-center">
+        <div className="w-full sm:max-w-[370px] flex items-center justify-center">
           <SearchField />
         </div>
-        <div className="w-full flex items-center justify-center ">
+        <div className="w-full sm:max-w-[370px] flex items-center justify-center ">
           <CatagoriesField />
         </div>
       </main>

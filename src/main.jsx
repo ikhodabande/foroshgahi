@@ -8,7 +8,7 @@ import { ConfigProvider } from "antd";
 createRoot(document.getElementById("root")).render(
   <ConfigProvider
     direction="rtl"
-    theme={{ token: { fontFamily: "iranYekan" } }}
+    theme={{ token: { fontFamily: "iranYekan" , colorPrimary: "#FF4600" } }}
   >
     <BrowserRouter>
       <StrictMode>
