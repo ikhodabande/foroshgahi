@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: iranyekan;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+ box-sizing: border-box;
+ margin: 0;
+ padding: 0;
+}
+
+@layer base {
+  @font-face {
+    font-family: 'iranyekan';
+    src: url(../assets/Fonts/Iranyekan/iranyekanwebbold.ttf) format('truetype');
+  }
+}
+@layer base {
+  @font-face {
+    font-family: 'iranyekanBold';
+    src: url(../assets/Fonts/Iranyekan/iranyekanwebbold.ttf) format('truetype');
+  }
+}
+@layer base {
+  @font-face {
+    font-family: 'iranyekanLight';
+    src: url(../assets/Fonts/Iranyekan/iranyekanweblight.ttf) format('truetype');
+  }
+}
