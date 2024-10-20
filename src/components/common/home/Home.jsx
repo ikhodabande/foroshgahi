@@ -13,17 +13,17 @@ export const Home = () => {
         <SearchModule companyName={'وبکام'}/>
       </header>
       <main className="w-full flex flex-col items-center justify-center pt-20  ">
-        <div className="flex flex-col w-full px-3 bg-white pb-2">
-          <div className="w-full h-full flex items-center justify-between sm:justify-center ">
+        <div className="flex flex-col items-center justify-center mr-4  bg-white pb-2">
+          <div className=" h-full flex items-center justify-between sm:justify-center ">
             <SearchSection />
-            <div className="flex ml-2">
+            <div className="flex items-center justify-center">
               <AvatarModule />
               <AvatarModule />
             </div>
           </div>
-          <div className="w-full flex items-center justify-center  ">
+          <div className=" flex items-center justify-center  ">
             <ButtonModule name={"جستجو"} type={""} size={"150px"} />
-            <div className="flex items-center justify-center mx-3">
+            <div className="flex items-center justify-center ">
               <ButtonModule name={"دمو"} type={"primary"} size={"80px"} />
               <ButtonModule name={"لیست"} type={""} size={"80px"} />
             </div>
