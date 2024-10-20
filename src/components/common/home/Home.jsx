@@ -13,7 +13,7 @@ export const Home = () => {
         <SearchModule companyName="وبکام" />
       </header>
       <main className="flex flex-col items-center justify-center pt-20 w-full">
-        <div className="flex flex-col items-center justify-center bg-white pb-2 mr-4 h-full">
+        <div className="flex flex-col items-center justify-center bg-white pb-2  h-full">
           <div className="flex items-center justify-between sm:justify-center w-full">
             <SearchSection />
             <div className="flex items-center justify-center">

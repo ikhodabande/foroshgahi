@@ -42,7 +42,7 @@ export const Menu = () => {
     {
       name: "سبد خرید",
       icon: activeMenu === "سبد خرید" ? (<RiShoppingCartFill  className="text-menu-lg"/>) : (<RiShoppingCartLine className="text-menu-lg"/>) , // No filled icon available, remains the same
-      link: "",
+      link: "/cart",
     },
     {
       name: "سفارشات",

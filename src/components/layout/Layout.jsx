@@ -6,7 +6,7 @@ export const Layout = ({children}) => {
     <>
     <header >
     </header>
-    <main className="w-[95vw] sm:w-full">
+    <main>
         {children}
     </main>
     <footer className="w-full fixed bottom-0 left-[50%] -translate-x-[50%]">
