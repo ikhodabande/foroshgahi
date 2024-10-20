@@ -78,7 +78,7 @@ export const Menu = () => {
           to={item.link}
           key={item.name}
           onClick={() => handleMenuClick(item.name)}
-          className={`flex flex-col gap-1 items-center ${
+          className={`flex flex-col gap-1 items-center py-3 px-4 ${
             activeMenu === item.name ? "text-black" : "text-gray-500"
           }`}
         >

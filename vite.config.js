@@ -10,7 +10,7 @@ export default defineConfig({
       registerType: 'autoUpdate', // Registers service worker automatically and updates it
       manifest: {
         name: 'فروشگاه وبکام',
-        short_name: 'وبشاپ',
+        short_name: 'وبکام شاپ',
         description: 'A Vite app with PWA support',
         theme_color: '#ffffff',
         icons: [
