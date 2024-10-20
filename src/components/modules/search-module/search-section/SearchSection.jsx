@@ -8,9 +8,10 @@ export const SearchSection = () => {
      <div className='w-[150px] h-[150px] border bg-webcom-gradient rounded-xl relative'>
       <p className='text-white mt-4 mx-2 text-sm w-full'>محصولات فروشگاهی</p>
       <p className='text-white mx-2 text-lg font-iranyekanBold'>وبکام </p>
-        <Button className='w-[90px] h-6 rounded-full bg-white absolute bottom-2 right-1 shadow-lg text-center'>
+       <Link to={"/products"}>
+       <Button className='w-[90px] h-6 rounded-full bg-white absolute bottom-2 right-1 shadow-lg text-center'>
            <span className='text-xxs font-iranyekanBold'>بیشتر ببینید</span>
-        </Button>
+        </Button></Link>
      </div>
     </>
   )
