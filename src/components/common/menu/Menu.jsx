@@ -27,7 +27,7 @@ export const Menu = () => {
         ) : (
           <RiHome2Line className="text-menu-lg" />
         ),
-      link: "",
+      link: "/",
     },
     {
       name: "دسته بندی",
@@ -52,7 +52,7 @@ export const Menu = () => {
         ) : (
           <RiShoppingBag4Line className="text-menu-lg" />
         ),
-      link: "",
+      link: "/order",
     },
     {
       name: "پروفایل",

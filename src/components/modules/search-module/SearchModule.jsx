@@ -49,9 +49,10 @@ const SearchModule = ({ companyName }) => {
         open={drawerVisible}
         height={"100vh"}
         closeIcon={null}
+        className="!bg-background"
         styles={{ padding: "20px", backgroundColor: "#f0f2f5" }}
       >
-        <div className="w-full h-12 border-gray-300 rounded-3xl flex items-center bg-white relative">
+        <div className="w-full h-12 border-gray-300  rounded-3xl flex items-center bg-white relative">
           <div
           onClick={closeDrawer} className="w-10 h-10 bg-white flex items-center justify-center rounded-full ">
             <LuArrowRight  className="text-menu-lg mr-3 text-gray-400 "  />

@@ -4,7 +4,7 @@ import { FaChevronLeft } from "react-icons/fa";
 
 export default function NotLoginUser() {
   return (
-    <div className="w-[85vw] h-[120px] flex flex-col justify-center border rounded shadow-lg mt-10">
+    <div className="w-[85vw] h-[120px] flex flex-col justify-center border rounded shadow-lg my-10">
       <div className="flex items-center  justify-between  px-2">
         <div className="flex items-center justify-center ">
           <HiOutlineLogin className="text-menu-lg mx-1 text-logo" />
