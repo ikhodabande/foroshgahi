@@ -28,6 +28,7 @@ export default {
         current: "currentColor",
         alert: "var(--color-alert)",
         white: "var(--color-white)",
+        logo: "var(--color-logo)"
       }, 
       fontSize: {
         'sm': '0.9rem',

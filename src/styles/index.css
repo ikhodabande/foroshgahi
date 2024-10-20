@@ -44,6 +44,7 @@
     --color-border: #c7c7c775;
     --color-alert: #ffcc00;
     --color-white: #ffffff;
+    --color-logo: #FF4600;
   }
   :root.dark {
     --color-background: #000000;
@@ -57,6 +58,8 @@
     --color-border: #c7c7c744;
     --color-alert: #ffcc00;
     --color-white: #ffffff;
+    --color-logo: #FF4600;
+
   }
 }
 

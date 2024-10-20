@@ -36,7 +36,7 @@ const SearchModule = ({ companyName }) => {
           className="w-full flex-1 outline-none border-none h-full rounded-full px-2 text-sm bg-background font-iranyekanBold flex text-start justify-start items-center"
         >
           <p className="text-gray-400 ml-1">جستجو در</p>
-          <span className="font-iranyekanBold text-display-lg mb-1">
+          <span className="font-iranyekanBold text-logo text-display-lg mb-1">
             {companyName}
           </span>
         </button>

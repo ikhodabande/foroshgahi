@@ -4,16 +4,20 @@ import App from "./App.jsx";
 import "./styles/index.css";
 import { BrowserRouter } from "react-router-dom";
 import { ConfigProvider } from "antd";
+import { Provider } from "react-redux";
+import store from "./store/store.js";
 
 createRoot(document.getElementById("root")).render(
   <ConfigProvider
     direction="rtl"
-    theme={{ token: { fontFamily: "iranYekan" , colorPrimary: "#FF4600" } }}
+    theme={{ token: { fontFamily: "iranYekan", colorPrimary: "#FF4600" } }}
   >
-    <BrowserRouter>
-      <StrictMode>
-        <App />
-      </StrictMode>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <StrictMode>
+          <App />
+        </StrictMode>
+      </BrowserRouter>
+    </Provider>
   </ConfigProvider>
 );
