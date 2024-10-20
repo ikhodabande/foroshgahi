@@ -8,6 +8,7 @@ import {
   RiProfileLine,
   RiProfileFill,
 } from "react-icons/ri";
+import { RiShoppingCartLine } from "react-icons/ri";
 
 import { Link } from "react-router-dom";
 
@@ -20,7 +21,12 @@ export const Menu = () => {
     },
     {
       name: "دسته بندی",
-      icon: <BiSolidCategory className="text-menu-lg" />,
+      icon: <TbCategory className="text-menu-lg" />,
+      link: "",
+    },
+    {
+      name: "سبد خرید",
+      icon: <RiShoppingCartLine  className="text-menu-lg" />,
       link: "",
     },
     {
@@ -37,9 +43,9 @@ export const Menu = () => {
   return (
     <div className="h-[60px] sm:max-w-[370px] mx-auto flex items-center justify-around py-1 bg-white border-t-2">
       {data.map((item) => (
-        <Link className="flex flex-col items-center text-gray-600">
+        <Link className="flex flex-col gap-1 items-center text-gray-500">
           <i>{item.icon}</i>
-          <p className="text-xs text-gray-600 font-iranyekanBold">{item.name}</p>
+          <p className="text-xxs text-gray-500 font-iranyekanBold">{item.name}</p>
         </Link>
       ))}
     </div>

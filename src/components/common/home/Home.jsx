@@ -9,11 +9,11 @@ import { CatagoriesField } from "../categories/categories-field/CatagoriesField"
 export const Home = () => {
   return (
     <>
-      <header className="w-full top-0 h-16 flex items-center justify-center mb-4 bg-white fixed z-10">
-        <SearchModule />
+      <header className="w-full top-0 h-16 flex items-center justify-center mb-4  bg-white fixed z-10">
+        <SearchModule companyName={'وبکام'}/>
       </header>
-      <main className="w-full flex flex-col items-center justify-center absolute top-16 left-[50%] -translate-x-[50%]  ">
-        <div className="flex flex-col sticky top-16 w-full px-3 bg-white pb-2">
+      <main className="w-full flex flex-col items-center justify-center pt-20  ">
+        <div className="flex flex-col w-full px-3 bg-white pb-2">
           <div className="w-full h-full flex items-center justify-between sm:justify-center ">
             <SearchSection />
             <div className="flex ml-2">
@@ -21,7 +21,7 @@ export const Home = () => {
               <AvatarModule />
             </div>
           </div>
-          <div className="w-full flex items-center justify-center ">
+          <div className="w-full flex items-center justify-center  ">
             <ButtonModule name={"جستجو"} type={""} size={"150px"} />
             <div className="flex items-center justify-center mx-3">
               <ButtonModule name={"دمو"} type={"primary"} size={"80px"} />
