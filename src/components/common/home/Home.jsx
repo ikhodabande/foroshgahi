@@ -9,9 +9,9 @@ import { CategoriesField } from "../categories/categories-field/CategoriesField"
 export const Home = () => {
   return (
     <>
-      <header className="fixed top-0 w-full h-16 flex items-center justify-center bg-white z-10 mb-4">
+      {/* <header className="fixed top-0 w-full h-16 flex items-center justify-center bg-white z-10 mb-4">
         <SearchModule companyName="وبکام" />
-      </header>
+      </header> */}
       <main className="flex flex-col items-center justify-center pt-20 w-full">
         <div className="flex flex-col items-center justify-center bg-white pb-2 mr-4 h-full">
           <div className="flex items-center justify-between sm:justify-center w-full">
