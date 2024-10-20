@@ -18,7 +18,7 @@ export const Categories = () => {
       <header className="fixed top-0 w-full h-16 flex items-center justify-center bg-white z-10 mb-4">
         <SearchModule companyName={"وبکام"} />
       </header>
-      <main className=' pt-16 grid grid-cols-3 gap-4 mr-4 pb-20'>
+      <main className=' pt-16 grid grid-cols-3 gap-3 mr-4 pb-20'>
         {categories.map((category) => (
           <CategoriesCard key={category.id} categorieItems={category.name} />
         ))}
