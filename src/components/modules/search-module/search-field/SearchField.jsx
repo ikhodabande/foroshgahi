@@ -32,7 +32,7 @@ export const SearchField = () => {
   return (
     <>
       <div className="w-full my-2 mx-2">
-        <p className="mb-2 mx-2">جستجو</p>
+        <p className="mb-4 mx-4 font-iranyekanBold  ">محصولات پرفروش</p>
         <div className="flex  items-center flex-nowrap overflow-x-auto ">
           {data.map((item, index) => (
             <ProductsCard

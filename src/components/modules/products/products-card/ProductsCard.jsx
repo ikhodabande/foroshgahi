@@ -4,7 +4,7 @@ import React from "react";
 export const ProductsCard = ({ productName, productPrice, productImg }) => {
   return (
     <>
-      <div className="min-w-[150px] min-h-[150px] mx-2  rounded-lg border ">
+      <div className="min-w-[150px] min-h-[150px] mx-2  rounded-lg border shadow ">
         <Image
           width={149}
           height={140}
