@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import {
   RiHome2Line,
+  RiHome2Fill,
   RiShoppingBag4Line,
   RiShoppingBag4Fill,
   RiProfileLine,
   RiProfileFill,
   RiShoppingCartLine,
+  RiShoppingCartFill ,
 } from "react-icons/ri";
 import { TbCategory } from "react-icons/tb";
 import { BiSolidCategory } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import { IoPersonOutline, IoPerson  } from "react-icons/io5";
 
 export const Menu = () => {
   // State to track the active menu item
@@ -20,7 +23,7 @@ export const Menu = () => {
       name: "خانه",
       icon:
         activeMenu === "خانه" ? (
-          <RiHome2Line className="text-menu-lg fill-current" />
+          <RiHome2Fill className="text-menu-lg" />
         ) : (
           <RiHome2Line className="text-menu-lg" />
         ),
@@ -38,7 +41,7 @@ export const Menu = () => {
     },
     {
       name: "سبد خرید",
-      icon: <RiShoppingCartLine className="text-menu-lg" />, // No filled icon available, remains the same
+      icon: activeMenu === "سبد خرید" ? (<RiShoppingCartFill  className="text-menu-lg"/>) : (<RiShoppingCartLine className="text-menu-lg"/>) , // No filled icon available, remains the same
       link: "",
     },
     {
@@ -55,11 +58,11 @@ export const Menu = () => {
       name: "پروفایل",
       icon:
         activeMenu === "پروفایل" ? (
-          <RiProfileFill className="text-menu-lg" />
+          <IoPerson className="text-menu-lg" />
         ) : (
-          <RiProfileLine className="text-menu-lg" />
+          <IoPersonOutline className="text-menu-lg" />
         ),
-      link: "",
+      link: "/profile",
     },
   ];
 

@@ -46,10 +46,10 @@ const SearchModule = ({ companyName }) => {
       <Drawer
         placement="bottom"
         onClose={closeDrawer}
-        visible={drawerVisible}
+        open={drawerVisible}
         height={"100vh"}
         closeIcon={null}
-        bodyStyle={{ padding: "20px", backgroundColor: "#f0f2f5" }}
+        styles={{ padding: "20px", backgroundColor: "#f0f2f5" }}
       >
         <div className="w-full h-12 border-gray-300 rounded-3xl flex items-center bg-white relative">
           <div
