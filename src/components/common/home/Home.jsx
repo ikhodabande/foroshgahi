@@ -2,9 +2,9 @@ import React from "react";
 import SearchModule from "../../modules/search-module/SearchModule";
 import { SearchSection } from "../../modules/search-module/search-section/SearchSection";
 import { AvatarModule } from "../../modules/avatar-module/AvatarModule";
-import ButtonModule from "../../modules/button-module/ButtonModule";
 import { SearchField } from "../../modules/search-module/search-field/SearchField";
 import { CategoriesField } from "../categories/categories-field/CategoriesField"; 
+import HomeBtnItems from "./home-btn-items/HomeBtnItems";
 
 export const Home = () => {
   return (
@@ -21,13 +21,7 @@ export const Home = () => {
               <AvatarModule />
             </div>
           </div>
-          <div className="flex items-center justify-center">
-            <ButtonModule name="جستجو" size="150px" />
-            <div className="flex items-center justify-center">
-              <ButtonModule name="دمو" type="primary" size="80px" />
-              <ButtonModule name="لیست" size="80px" />
-            </div>
-          </div>
+         <HomeBtnItems/>
         </div>
 
         <div className="flex items-center justify-center w-full sm:max-w-[370px]">

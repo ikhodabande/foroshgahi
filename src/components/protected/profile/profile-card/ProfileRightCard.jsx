@@ -1,9 +1,25 @@
-import React from 'react'
+import React from "react";
+import ButtonModule from "../../../modules/button-module/ButtonModule";
+import { IoGitMerge } from "react-icons/io5";
+import { Button } from "antd";
 
 export default function ProfileRightCard() {
+  const data = [
+    {
+      name: "مشاهده کالاها",
+    },
+    {
+      name: "جستجوی  کالاها",
+    },
+    {
+      name: "جستجوی  کالاها",
+    },
+  ];
   return (
-    <div className='w-[58vw] h-[150px] rounded-lg shadow-lg border '>
-      
+    <div className="w-[58vw] h-[150px] rounded-lg shadow-lg border bg-white flex flex-col items-center justify-center">
+      {data.map((item, index) => (
+       <Button type="primary" className="my-[1.5px] w-[95%] h-10 rounded-lg shadow text-xs">{item.name}</Button>
+      ))}
     </div>
-  )
+  );
 }
