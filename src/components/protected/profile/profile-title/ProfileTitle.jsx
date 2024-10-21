@@ -1,10 +1,14 @@
+import { Avatar } from 'antd';
 import React from 'react'
 import { HiOutlineBellAlert } from "react-icons/hi2";
+import { LuUser2 } from "react-icons/lu";
 
 export default function ProfileTitle() {
   return (
     <div className="w-[95vw] h-[120px] border mx-auto mt-8 rounded shadow-lg flex gap-2 items-center justify-between px-3">
-          <div className="h-[100px] w-[100px] rounded-full border shadow-lg"></div>
+          <div className="h-[100px] w-[100px] rounded-full border shadow-lg flex flex-col items-center justify-center ">
+            <Avatar className='bg-webcom-gradient' size={90} icon={<LuUser2 />}/>
+          </div>
           <div>
             <p className="text-sm font-iranyekanBold">وبکام مشتری</p>
             <p className="text-xs text-gray-500">
@@ -14,6 +18,7 @@ export default function ProfileTitle() {
           <div>
             <HiOutlineBellAlert className="text-menu-lg text-yellow-500 " />
           </div>
+          
         </div>
   )
 }
