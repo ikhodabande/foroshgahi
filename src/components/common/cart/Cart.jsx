@@ -6,7 +6,7 @@ export const Cart = () => {
   return (
     <>
       <header>
-        <p  className="w-full text-center py-4 font-iranyekanBold">سبد خرید</p>
+        <p  className="w-full text-center py-4 font-iranyekanBold border-b-2 border-logo">سبد خرید</p>
       </header>
       <main className=" flex flex-col items-center justify-center">
         <NotLoginUser/>

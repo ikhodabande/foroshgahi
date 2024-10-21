@@ -6,7 +6,7 @@ export default function Order() {
   return (
     <>
     <header>
-       <p  className="w-full text-center py-4 font-iranyekanBold">سفارش های من</p> 
+       <p  className="w-full text-center py-4 font-iranyekanBold border-b-2 border-logo">سفارش های من</p> 
     </header>
     <main className=" flex flex-col items-center justify-center">
         <NotLoginUser/>

@@ -6,13 +6,13 @@ import { Button } from "antd";
 export default function ProfileRightCard() {
   const data = [
     {
-      name: "مشاهده کالاها",
+      name: " کالاهای پرفروش",
     },
     {
-      name: "جستجوی  کالاها",
+      name: " کالاهای جدید",
     },
     {
-      name: "جستجوی  کالاها",
+      name: "کالاهای محبوب",
     },
   ];
   return (
@@ -20,7 +20,7 @@ export default function ProfileRightCard() {
       {data.map((item, index) => (
         <Button
           key={index}
-          className="my-[1.5px] w-[95%] h-10 rounded-lg shadow text-xs font-iranyekanBold"
+          className="my-[1.5px] w-[95%] h-10 rounded-lg shadow text-xs border-none font-iranyekanBold"
         >
           {item.name}
         </Button>
