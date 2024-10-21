@@ -33,7 +33,7 @@ export const Login = () => {
   };
 
   return (
-    <div className="absolute w-full h-screen z-20 bg-white">
+    <div className="fixed container h-screen z-20 bg-white">
       <div className="absolute -bottom-20 right-[65vw]">
         <StepModule stepLevel={step.toString()} />
       </div>

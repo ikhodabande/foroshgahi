@@ -7,6 +7,7 @@ import { TiMessage } from "react-icons/ti";
 import { HiOutlineBellAlert } from "react-icons/hi2";
 import { FaInstagram } from "react-icons/fa";
 import { PiPhoneCall } from "react-icons/pi";
+import { Link } from "react-router-dom";
 
 export default function ProfileCenterCard() {
   const data = [
@@ -44,13 +45,14 @@ export default function ProfileCenterCard() {
     {
       name: "خروج از حساب کاربری",
       icon: <IoLogOutOutline className="mx-2 text-display-lg" />,
-      link: "",
+      link: "/login",
     },
   ];
   return (
     <>
       {data.map((item, index) => (
-        <div
+        <Link
+          to={item.link}
           key={index}
           className="w-[97vw] h-[70px] shadow-md rounded-lg border flex items-center justify-between px-4"
         >
@@ -61,7 +63,7 @@ export default function ProfileCenterCard() {
           <div>
             <BiChevronLeft className="text-menu-lg" />
           </div>
-        </div>
+        </Link>
       ))}
     </>
   );
