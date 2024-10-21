@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   RiHome2Line,
   RiHome2Fill,
@@ -7,69 +7,49 @@ import {
   RiProfileLine,
   RiProfileFill,
   RiShoppingCartLine,
-  RiShoppingCartFill ,
+  RiShoppingCartFill,
 } from "react-icons/ri";
 import { TbCategory } from "react-icons/tb";
 import { BiSolidCategory } from "react-icons/bi";
-import { Link } from "react-router-dom";
-import { IoPersonOutline, IoPerson  } from "react-icons/io5";
+import { Link, useLocation } from "react-router-dom";
+import { IoPersonOutline, IoPerson } from "react-icons/io5";
 
 export const Menu = () => {
-  // State to track the active menu item
-  const [activeMenu, setActiveMenu] = useState("خانه");
+  const [activeMenu, setActiveMenu] = useState("");
+  const { pathname } = useLocation();
 
   const data = [
     {
       name: "خانه",
-      icon:
-        activeMenu === "خانه" ? (
-          <RiHome2Fill className="text-menu-lg" />
-        ) : (
-          <RiHome2Line className="text-menu-lg" />
-        ),
+      icon: activeMenu === "/" ? <RiHome2Fill className="text-menu-lg" /> : <RiHome2Line className="text-menu-lg" />,
       link: "/",
     },
     {
       name: "دسته بندی",
-      icon:
-        activeMenu === "دسته بندی" ? (
-          <BiSolidCategory className="text-menu-lg" />
-        ) : (
-          <TbCategory className="text-menu-lg" />
-        ),
+      icon: activeMenu === "/categories" ? <BiSolidCategory className="text-menu-lg" /> : <TbCategory className="text-menu-lg" />,
       link: "/categories",
     },
     {
       name: "سبد خرید",
-      icon: activeMenu === "سبد خرید" ? (<RiShoppingCartFill  className="text-menu-lg"/>) : (<RiShoppingCartLine className="text-menu-lg"/>) , // No filled icon available, remains the same
+      icon: activeMenu === "/cart" ? <RiShoppingCartFill className="text-menu-lg" /> : <RiShoppingCartLine className="text-menu-lg" />,
       link: "/cart",
     },
     {
       name: "سفارشات",
-      icon:
-        activeMenu === "سفارشات" ? (
-          <RiShoppingBag4Fill className="text-menu-lg" />
-        ) : (
-          <RiShoppingBag4Line className="text-menu-lg" />
-        ),
+      icon: activeMenu === "/order" ? <RiShoppingBag4Fill className="text-menu-lg" /> : <RiShoppingBag4Line className="text-menu-lg" />,
       link: "/order",
     },
     {
       name: "پروفایل",
-      icon:
-        activeMenu === "پروفایل" ? (
-          <IoPerson className="text-menu-lg" />
-        ) : (
-          <IoPersonOutline className="text-menu-lg" />
-        ),
+      icon: activeMenu === "/profile" ? <IoPerson className="text-menu-lg" /> : <IoPersonOutline className="text-menu-lg" />,
       link: "/profile",
     },
   ];
 
-  // Handle menu item click
-  const handleMenuClick = (name) => {
-    setActiveMenu(name);
-  };
+  useEffect(() => {
+    // Set active menu based on the current pathname
+    setActiveMenu(pathname);
+  }, [pathname]);
 
   return (
     <div className="h-[60px] sm:max-w-[370px] mx-auto flex items-center justify-around py-1 bg-white border-t-2">
@@ -77,10 +57,8 @@ export const Menu = () => {
         <Link
           to={item.link}
           key={item.name}
-          onClick={() => handleMenuClick(item.name)}
-          className={`flex flex-col gap-1 items-center py-3 px-4 ${
-            activeMenu === item.name ? "text-black" : "text-gray-500"
-          }`}
+          onClick={() => setActiveMenu(item.link)}
+          className={`flex flex-col gap-1 items-center py-3 px-4 ${activeMenu === item.link ? "text-black" : "text-gray-500"}`}
         >
           <i>{item.icon}</i>
           <p className="text-xxs font-iranyekanBold">{item.name}</p>
