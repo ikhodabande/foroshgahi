@@ -1,7 +1,7 @@
 import React from "react";
-import { ProductsCard } from "../../products/products-card/ProductsCard";
+import { ProductsCard } from "../products-card/ProductsCard";
 
-export const SearchField = () => {
+export default function NewProductsField() {
   const data = [
     {
       name: "کفش",
@@ -32,8 +32,8 @@ export const SearchField = () => {
   return (
     <>
       <div className="w-full my-2 mx-2">
-        <p className="mb-4 mx-4 font-iranyekanBold  ">محصولات پرفروش</p>
-        <div className="flex  items-center flex-nowrap overflow-x-auto ">
+        <p className="mb-4 mx-4 font-iranyekanBold  ">جدیدترین کالاها</p>
+        <div className="flex  items-center flex-nowrap overflow-x-auto snap-mandatory snap-x  scroll-px-6">
           {data.map((item, index) => (
             <ProductsCard
               productImg={item.image}
@@ -46,4 +46,4 @@ export const SearchField = () => {
       </div>
     </>
   );
-};
+}
