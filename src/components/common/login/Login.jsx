@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import StepModule from "../../modules/step-module/StepModule";
 import logo from "../../../assets/images/logo/webcomlogo.png";
 import { Button, Input } from "antd";
-import { BiPhone } from "react-icons/bi";
 import CheckboxModule from "../../modules/checkbox-module/CheckboxModule";
 
 export const Login = () => {
@@ -16,10 +15,12 @@ export const Login = () => {
 
   const handleNextStep = () => {
     if (step === 1) {
-      // Perform the login logic here (e.g., API call)
-      console.log("Moving to step 2");
-      setStep(2); // Go to next step
+      // Perform any logic before moving to the next step
+      setStep(2);
+    } else if (step === 2) {
+      setStep(3);
     } else {
+      // Dispatch the login action and navigate to the profile page
       dispatch(login());
       navigate("/profile");
     }
@@ -64,10 +65,6 @@ export const Login = () => {
               </p>
               <div className="text-center">
                 <Input
-                 count={{
-                    // show: true,
-                    max: 11,
-                  }}
                   allowClear
                   maxLength={11}
                   type="number"
@@ -113,7 +110,21 @@ export const Login = () => {
             </div>
           </div>
         ) : (
-            <></>
+          <div className="text-center">
+            <p className="text-center text-sm font-iranyekanBold">
+              مرحله نهایی: تایید اطلاعات
+            </p>
+            <p className="text-xs px-14 text-center my-10">
+              اطلاعات شما با موفقیت تایید شد. <br/>اکنون وارد پروفایل خود شوید.
+            </p>
+            <Button
+              type="primary"
+              className="text-xs w-[47vw] shadow-lg text-center"
+              onClick={handleNextStep}
+            >
+              ورود به پروفایل
+            </Button>
+          </div>
         )}
       </motion.main>
     </div>
