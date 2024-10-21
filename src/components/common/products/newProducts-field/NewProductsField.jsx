@@ -33,13 +33,16 @@ export default function NewProductsField() {
     <>
       <div className="w-full my-2 mx-2">
         <p className="mb-4 mx-4 font-iranyekanBold  ">جدیدترین کالاها</p>
-        <div className="flex  items-center flex-nowrap overflow-x-auto snap-mandatory snap-x  scroll-px-6">
+        <div className="flex  items-center flex-nowrap overflow-x-auto snap-mandatory snap-x px-4 scroll-px-6">
           {data.map((item, index) => (
             <ProductsCard
+              customeClass={"min-w-[150px] min-h-[150px]"}
               productImg={item.image}
               productPrice={item.price}
               productName={item.name}
               key={index}
+              imgH={140}
+              imgW={149}
             />
           ))}
         </div>

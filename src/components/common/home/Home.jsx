@@ -1,6 +1,6 @@
 import React from "react";
 import SearchModule from "../../modules/search-module/SearchModule";
-import { SearchSection } from "../../modules/search-module/search-section/SearchSection";
+import { HomeTitleSection } from "./hometitle-section/HomeTitleSection";
 import { AvatarModule } from "../../modules/avatar-module/AvatarModule";
 import HomeBtnItems from "./home-btn-items/HomeBtnItems";
 import { BestSellField } from "../products/BestSell-field/BestSellField";
@@ -16,11 +16,11 @@ export const Home = () => {
       </header>
       <main className="w-[100vw] flex flex-col items-center justify-center pt-20 mx-auto ">
         <div className="flex flex-col items-center justify-center bg-white pb-2  h-full">
-          <div className="flex items-center justify-center w-[100vw] px-2">
+          <div className="flex items-center justify-center w-[100vw] pr-4">
             <div>
-              <SearchSection />
+              <HomeTitleSection />
             </div>
-            <div className="flex items-center justify-center pr-16 overflow-x-scroll snap-proximity snap-x scroll-smooth">
+            <div className="flex items-center justify-center pr-24 overflow-x-scroll snap-proximity snap-x scroll-smooth">
               <AvatarModule />
             </div>
           </div>

@@ -1,17 +1,18 @@
-import React from 'react'
+import React from "react";
 import EmptyCart from "../../modules/empty-cart/EmptyCart";
 import NotLoginUser from "../login/not-login-user/NotLoginUser";
+import PageHeader from "../../modules/pageHeader-module/PageHeader";
 
 export default function Order() {
   return (
     <>
-    <header>
-       <p  className="w-full text-center text-sm py-4 font-iranyekanBold border-b-2 border-logo ">سفارش های من</p> 
-    </header>
-    <main className=" flex flex-col items-center justify-center">
-        <NotLoginUser/>
-        <EmptyCart emptyMsg={"سبد سفارش شما خالی است!"}/>
+      <header>
+        <PageHeader PageName={"سفارش های من"} />
+      </header>
+      <main className=" flex flex-col items-center justify-center pt-16">
+        <NotLoginUser />
+        <EmptyCart emptyMsg={"سبد سفارش شما خالی است!"} />
       </main>
     </>
-  )
+  );
 }

@@ -1,14 +1,15 @@
 import React from "react";
 import EmptyCart from "../../modules/empty-cart/EmptyCart";
 import NotLoginUser from "../login/not-login-user/NotLoginUser";
+import PageHeader from "../../modules/pageHeader-module/PageHeader";
 
 export const Cart = () => {
   return (
     <>
       <header>
-        <p  className="w-full text-sm text-center py-4 font-iranyekanBold border-b-2 border-logo">سبد خرید</p>
+        <PageHeader PageName={"سبد خرید"}/>
       </header>
-      <main className=" flex flex-col items-center justify-center">
+      <main className=" flex flex-col items-center justify-center pt-16">
         <NotLoginUser/>
         <EmptyCart emptyMsg={"سبد خرید شما خالی است!"} />
       </main>

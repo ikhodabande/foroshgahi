@@ -10,7 +10,12 @@ export default function AllProducts() {
           {Array(10)
             .fill(null)
             .map((_, index) => (
-              <ProductsCard key={index} />
+              <ProductsCard
+                customeClass={"min-w-[150px] min-h-[150px]"}
+                imgH={140}
+                imgW={149}
+                key={index}
+              />
             ))}
         </div>
       </div>
