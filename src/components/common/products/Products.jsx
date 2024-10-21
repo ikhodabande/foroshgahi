@@ -14,7 +14,7 @@ export const Products = () => {
         <SearchModule companyName={"محصولات وبکام"}/>
         </div>
         <div className="grid grid-cols-3 gap-2 max-w-[100vw] pb-16  mx-auto overflow-x-auto snap-mandatory snap-x px-4 scroll-px-6">
-          {Array(20)
+          {Array(21)
             .fill(null)
             .map((_, index) => (
               <ProductsCard

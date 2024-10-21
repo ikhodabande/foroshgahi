@@ -9,6 +9,12 @@ import ProfilePage from "./pages/profile/ProfilePage";
 import CartPage from "./pages/cart/CartPage";
 import NotFound from "./pages/404/NotFound";
 import OrderPage from "./pages/order/OrderPage";
+import CalltousPage from "./pages/calltous/CalltousPage";
+import RulesPage from "./pages/rules/RulesPage";
+import NotificationsPage from "./pages/notifications/NotificationsPage";
+import TicketsPage from "./pages/tickets/TicketsPage";
+import SupportPage from "./pages/support/SupportPage";
+import SendTicketPage from "./pages/tickets/SendTicketPage";
 
 export const AllRoutes = () => {
   return (
@@ -20,6 +26,12 @@ export const AllRoutes = () => {
       <Route path="/products" element={<ProductsPage />} />
       <Route path="/cart" element={<CartPage/>} />
       <Route path="/order" element={<OrderPage/>} />
+      <Route path="/call" element={<CalltousPage/>} />
+      <Route path="/rulls" element={<RulesPage/>} />
+      <Route path="/notifications" element={<NotificationsPage/>} />
+      <Route path="/tickets" element={<TicketsPage/>} />
+      <Route path="/support" element={<SupportPage/>} />
+      <Route path="/send-ticket" element={<SendTicketPage/>} />
       <Route 
         path="/profile" 
         element={<PrivateRoute element={<ProfilePage />} />} 
