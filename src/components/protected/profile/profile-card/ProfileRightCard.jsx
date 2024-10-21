@@ -18,7 +18,9 @@ export default function ProfileRightCard() {
   return (
     <div className="w-[58vw] h-[150px] rounded-lg shadow-lg border bg-white flex flex-col items-center justify-center">
       {data.map((item, index) => (
-       <Button type="primary" className="my-[1.5px] w-[95%] h-10 rounded-lg shadow text-xs">{item.name}</Button>
+        <Button className="my-[1.5px] w-[95%] h-10 rounded-lg shadow text-xs bg-webcom-gradient text-white font-iranyekanBold">
+          {item.name}
+        </Button>
       ))}
     </div>
   );
