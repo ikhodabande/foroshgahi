@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import axiosInstance from '../../config/apiConfig';
 
 const fetchUser = async () => {
-  const response = await axiosInstance.get('/User');
+  const response = await axiosInstance.get('/Store/User');
   return response.data;
 };
 
