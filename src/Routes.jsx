@@ -23,7 +23,7 @@ export const AllRoutes = () => {
       <Route path="/home" element={<Navigate replace to="/" />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/categories" element={<CategoriesPage />} />
-      <Route path="/products" element={<ProductsPage />} />
+      <Route path="/products/:mCode/:sCode" element={<ProductsPage />} />
       <Route path="/cart" element={<CartPage/>} />
       <Route path="/order" element={<OrderPage/>} />
       <Route path="/call" element={<CalltousPage/>} />
