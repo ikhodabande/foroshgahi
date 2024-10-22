@@ -5,20 +5,67 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import StepModule from "../../modules/step-module/StepModule";
 import logo from "../../../assets/images/logo/webcomlogo.png";
-import { Button, Input } from "antd";
+import { Button, Input, message } from "antd";
 import CheckboxModule from "../../modules/checkbox-module/CheckboxModule";
+import { useSendSms } from "../../../api/useMutation/SendSms";
 
 export const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [step, setStep] = useState(1); // Manage steps here
+  const [phoneNumber, setPhoneNumber] = useState(""); // Store phone number
+  const [verificationCode, setVerificationCode] = useState(""); // Store verification code
+  const [checkboxIsChecked, setCheckboxIsChecked] = useState(false);
+
+  const { mutate: sendSms, isLoading, data } = useSendSms();
+
+  const onChangeCheckBox = (e) => {
+    setCheckboxIsChecked(e.target.checked);
+  };
 
   const handleNextStep = () => {
     if (step === 1) {
-      // Perform any logic before moving to the next step
-      setStep(2);
+      // Validate phone number input
+      if (!phoneNumber) {
+        message.error(
+          <p className="font-iranyekan">لطفا شماره تلفن را وارد کنید</p>
+        );
+        return;
+      }
+      if (!checkboxIsChecked) {
+        message.error(
+          <p className="font-iranyekan">لطفا تیک پذیرفتن شرایط را بزنید</p>
+        );
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("phoneNumber", phoneNumber);
+
+      // Call the mutate function
+      sendSms(formData, {
+        onSuccess: () => {
+          message.success(
+            <p className="font-iranyekan">کد فعال سازی ارسال شد.</p>
+          );
+          setStep(2); // Move to step 2 if SMS is sent
+        },
+        onError: () => {
+          message.error(
+            <p className="font-iranyekan">
+              ارسال کد فعال سازی با مشکل مواجه شد.
+            </p>
+          );
+        },
+      });
     } else if (step === 2) {
-      setStep(3);
+      // Logic for verification code submission
+      if (verificationCode === "123456") {
+        // Example code validation
+        setStep(3);
+      } else {
+        message.error("کد وارد شده صحیح نمی باشد.");
+      }
     } else {
       // Dispatch the login action and navigate to the profile page
       dispatch(login());
@@ -68,6 +115,8 @@ export const Login = () => {
                   allowClear
                   maxLength={11}
                   type="number"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
                   placeholder="شماره تلفن"
                   className="text-sm w-[47vw] text-center my-2"
                 />
@@ -75,12 +124,14 @@ export const Login = () => {
                   type="primary"
                   className="text-xs w-[47vw] shadow-lg"
                   onClick={handleNextStep}
+                  loading={isLoading}
                 >
                   شماره تماس را تایید میکنم
                 </Button>
               </div>
             </div>
             <CheckboxModule
+              onChange={onChangeCheckBox}
               checkboxItem={"با ثبت نام در برنامه شرایط و قوانین را می پذیرم"}
             />
           </>
@@ -97,6 +148,8 @@ export const Login = () => {
                 allowClear
                 maxLength={6}
                 type="number"
+                value={verificationCode}
+                onChange={(e) => setVerificationCode(e.target.value)}
                 placeholder="کد فعال سازی"
                 className="text-sm my-2 w-[47vw] text-center"
               />
@@ -115,7 +168,8 @@ export const Login = () => {
               مرحله نهایی: تایید اطلاعات
             </p>
             <p className="text-xs px-14 text-center my-10">
-              اطلاعات شما با موفقیت تایید شد. <br/>اکنون وارد پروفایل خود شوید.
+              اطلاعات شما با موفقیت تایید شد. <br />
+              اکنون وارد پروفایل خود شوید.
             </p>
             <Button
               type="primary"

@@ -1,19 +1,19 @@
-// src/api/useMutation/SendSms.js
 import { useMutation } from '@tanstack/react-query';
 import axiosInstance from '../../config/apiConfig';
 
-const SendSms = async (newData) => {
+const sendSms = async (newData) => {
   const response = await axiosInstance.post('/SendSms', newData);
-  return response.data;
+  return response.data;  // Adjust this based on the actual API response structure
 };
 
-export const UseSendSms = () => {
-  return useMutation(SendSms, {
+export const useSendSms = () => {
+  return useMutation({
+    mutationFn: sendSms,
     onSuccess: (data) => {
-      console.log('Data submitted successfully:', data);
+      console.log('SMS sent successfully:', data); // Handle side effects here if needed
     },
     onError: (error) => {
-      console.error('Error submitting data:', error.message);
+      console.error('Error sending SMS:', error.message); // Handle error display to users
     },
   });
 };
