@@ -11,7 +11,7 @@ export const Products = () => {
 
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(12); // Adjust the number of products per page as needed
+  const [pageSize, setPageSize] = useState(30); // Adjust the number of products per page as needed
   const [totalProducts, setTotalProducts] = useState(0); // Total product count from the API
 
   const {
@@ -35,7 +35,9 @@ export const Products = () => {
       onSuccess: (data) => {
         setProducts(data); // Assuming the data contains the products array
         setTotalProducts(data.totalCount); // Adjust this if the total count is returned separately
-        message.success(<p className="font-iranyekan">کالاها با موفقیت دریافت شدند.</p>);
+        message.success(
+          <p className="font-iranyekan">کالاها با موفقیت دریافت شدند.</p>
+        );
       },
       onError: () => {
         message.error(<p>مشکل در دریافت کالاها، لطفا بعدا تلاش کنید.</p>);
@@ -63,13 +65,13 @@ export const Products = () => {
         <div className="flex items-center justify-center pt-16 pb-4 sticky top-0">
           <SearchModule companyName={"محصولات وبکام"} />
         </div>
-        <div className="grid grid-cols-3 gap-2 max-w-[100vw] pb-16 mx-auto overflow-x-auto snap-mandatory snap-x px-4 scroll-px-6">
+        <div className="grid grid-cols-1 gap-2 max-w-[100vw] pb-16 mx-auto overflow-x-auto snap-mandatory snap-x px-4 scroll-px-6">
           {products.map((product) => (
             <ProductsCard
               key={product.fldId}
-              customeClass={"min-w-[90px] min-h-[90px]"}
-              imgH={90}
-              imgW={95}
+              customeClass={"min-w-[90px] min-h-[350px]"}
+              imgH={250}
+              imgW={325}
               imgSrc={product.fldLink}
               productName={product.fldN_Kala}
               price={product.fldFee}
@@ -78,13 +80,16 @@ export const Products = () => {
           ))}
         </div>
         {/* Ant Design Pagination */}
-        <div className="flex justify-center py-4">
+        <div className="w-full h-full flex items-center relative pt-14">
           <Pagination
+            showSizeChanger={false}
+            responsive
             current={currentPage}
             pageSize={pageSize}
-            total={totalProducts}
+            total={10}
             onChange={handlePageChange}
-            showSizeChanger
+            className="!absolute !bottom-16 left-[50%] -translate-x-[50%] px-3 flex !py-0 !my-0 items-center justify-between  !h-10"
+            style={{ marginTop: 20, textAlign: "center" }}
           />
         </div>
       </main>
