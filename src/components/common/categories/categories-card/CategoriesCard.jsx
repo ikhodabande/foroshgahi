@@ -1,7 +1,7 @@
 import { Button, Image } from "antd";
 import React from "react";
 
-export const CategoriesCard = ({ categorieItems, imgSrc, id }) => {
+export const CategoriesCard = ({ categorieItems, imgSrc, id, onClick }) => {
   return (
     <div className="flex flex-col  items-center">
       <Button id={id} className="w-[150px] h-[120px] shadow-lg p-0 border-none rounded-2xl m-2 bg-white">
@@ -12,6 +12,7 @@ export const CategoriesCard = ({ categorieItems, imgSrc, id }) => {
           width={150}
           preview={false}
           className="rounded-2xl object-cover"
+          onClick={onClick}
         />
       </Button>
       <p className="text-xs font-iranyekanBold">{categorieItems}</p>
