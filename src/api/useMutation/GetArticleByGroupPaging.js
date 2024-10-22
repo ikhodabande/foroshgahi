@@ -3,7 +3,7 @@ import axiosInstance from '../../config/apiConfig';
 
 const GetArticleByGroupPaging = async (newData) => {
   const response = await axiosInstance.post('/Store/GetArticleByGroupPaging', newData);
-  return response.data;  // Adjust this based on the actual API response structure
+  return response.data;  
 };
 
 export const useGetArticleByGroupPaging = () => {
