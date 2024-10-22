@@ -26,19 +26,19 @@ export const Login = () => {
   const handleNextStep = () => {
     if (step === 1) {
       // Validate phone number input
-      if (!phoneNumber) {
-        message.error(
-          <p className="font-iranyekan">لطفا شماره تلفن را وارد کنید</p>
-        );
-        return;
-      }
-      if (!checkboxIsChecked) {
-        message.error(
-          <p className="font-iranyekan">لطفا تیک پذیرفتن شرایط را بزنید</p>
-        );
-        return;
-      }
-
+      // if (!phoneNumber) {
+      //   message.error(
+      //     <p className="font-iranyekan">لطفا شماره تلفن را وارد کنید</p>
+      //   );
+      //   return;
+      // }
+      // if (!checkboxIsChecked) {
+      //   message.error(
+      //     <p className="font-iranyekan">لطفا تیک پذیرفتن شرایط را بزنید</p>
+      //   );
+      //   return;
+      // }
+      setStep(2)
       const formData = new FormData();
       formData.append("phoneNumber", phoneNumber);
 

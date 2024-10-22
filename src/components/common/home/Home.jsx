@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SearchModule from "../../modules/search-module/SearchModule";
 import { HomeTitleSection } from "./hometitle-section/HomeTitleSection";
 import { AvatarModule } from "../../modules/avatar-module/AvatarModule";
@@ -7,15 +7,29 @@ import { BestSellField } from "../products/BestSell-field/BestSellField";
 import { TrendSellField } from "../products/TrendSell-field/TrendSellField";
 import NewProductsField from "../products/newProducts-field/NewProductsField";
 import AllProducts from "../products/all-products/AllProducts";
+import { useFetchGroups } from "../../../api/useQuery/GetGroups";
 
 export const Home = () => {
+  const { data: groups, isLoading, isError } = useFetchGroups();
+
+
+  if (isLoading) {
+    return <div className="text-center">در حال بارگذاری...</div>; // Loading message
+  }
+
+  if (isError) {
+    return (
+      <div className="text-center text-red-500">خطا در بارگذاری داده‌ها</div>
+    ); // Error message
+  }
+
   return (
     <>
       <header className="fixed top-0 w-full h-16 flex items-center justify-center bg-white z-10 mb-4">
         <SearchModule companyName="وبکام" />
       </header>
       <main className="w-[100vw] flex flex-col items-center justify-center pt-20 mx-auto ">
-        <div className="flex flex-col items-center justify-center bg-white pb-2  h-full">
+        <div className="flex flex-col items-center justify-center bg-white pb-2 h-full">
           <div className="flex items-center justify-center w-[100vw] pr-4">
             <div>
               <HomeTitleSection />
@@ -24,14 +38,16 @@ export const Home = () => {
               <AvatarModule />
             </div>
           </div>
-          <HomeBtnItems />
+          <div className="w-[100vw] flex items-center justify-start px-2">
+            <HomeBtnItems data={groups.mGroup} />
+          </div>
         </div>
 
         <div className="flex flex-col items-center justify-center w-full sm:max-w-[370px] pb-20">
           <BestSellField />
           <TrendSellField />
-          <NewProductsField/>
-          <AllProducts/>
+          <NewProductsField />
+          <AllProducts />
         </div>
       </main>
     </>

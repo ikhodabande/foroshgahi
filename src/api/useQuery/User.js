@@ -1,4 +1,3 @@
-// src/api/useQuery/fetchData.js
 import { useQuery } from '@tanstack/react-query';
 import axiosInstance from '../../config/apiConfig';
 
