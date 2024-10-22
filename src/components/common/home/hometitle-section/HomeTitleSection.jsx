@@ -8,11 +8,11 @@ export const HomeTitleSection = ({Notif, icon, }) => {
     <>
       <div className="w-[180px] sm:w-[350px] h-[150px]   bg-white text-logo rounded-xl relative shadow-lg  flex flex-col items-center">
        <img src={icon} className="object-cover  rounded-lg shadow-lg" alt="" />
-        {/* <p className=" mt-4  text-sm ">{Notif}</p> */}
+        {/* <p className=" mt-4  text-sm ">مجصولات </p> */}
         {/* <p className=" px-6 text-lg w-full text-start font-iranyekanBold">
           وبکام
         </p> */}
-        <Link to={"/products"}>
+        {/* <Link to={"/products"}>
           <Button className=" h-6 rounded-full text-white absolute bottom-0 right-4 shadow-lg text-center bg-logo ">
             <span className="text-xxs font-iranyekanBold ">
               مشاهده محصولات
@@ -21,7 +21,7 @@ export const HomeTitleSection = ({Notif, icon, }) => {
               <BiChevronLeft />
             </span>
           </Button>
-        </Link>
+        </Link> */}
       </div>
     </>
   );

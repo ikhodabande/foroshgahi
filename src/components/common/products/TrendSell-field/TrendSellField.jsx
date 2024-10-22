@@ -1,7 +1,7 @@
 import React from "react";
 import { ProductsCard } from "../products-card/ProductsCard";
 
-export const TrendSellField = () => {
+export const TrendSellField = ({data}) => {
   return (
     <>
       <div className="w-full flex flex-col my-2">

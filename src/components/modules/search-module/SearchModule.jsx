@@ -37,7 +37,7 @@ const SearchModule = ({ companyName }) => {
         >
           <p className="text-gray-400 ml-1 text-sm">جستجو در</p>
           <span className="font-iranyekanBold text-logo text-md mb-[0.5px]">
-            {companyName}
+            {companyName || "وبکام"}
           </span>
         </button>
       </div>

@@ -34,7 +34,7 @@ export const Home = () => {
     <>
       <header className=" sticky -top-10 w-full flex flex-col items-center justify-center bg-white z-10 mb-4">
         <div className="h-10 bg-logo flex items-center justify-center w-full">
-          <p className="font-iranyekanBold text-white text-sm">{startData?.setting.fldEtelaResani}</p>
+          <p className="font-iranyekanBold text-white text-sm">{startData?.setting.fldEtelaResani || "با وبکام همیشه آنلاین باشید"}</p>
         </div>
         <div className="h-16 flex items-center justify-center">
           <SearchModule companyName={Relations[0]?.fldN_Shobe}/>
@@ -56,10 +56,14 @@ export const Home = () => {
         </div>
 
         <div className="flex flex-col items-center justify-center w-full sm:max-w-[370px] pb-20">
-          <BestSellField />
-          <TrendSellField />
+         {
+          groups?.mGroup.map((item, index) => 
+            <BestSellField key={index}  data={item}/>
+          )
+         }
+          {/* <TrendSellField data={groups.mGroup} />
           <NewProductsField />
-          <AllProducts />
+          <AllProducts /> */}
         </div>
       </main>
     </>
