@@ -1,7 +1,13 @@
-import React from 'react'
+import React from "react";
+import PageHeader from "../../modules/pageHeader-module/PageHeader";
 
 export default function Calltous() {
   return (
-    <div>Calltous</div>
-  )
+    <>
+      <header>
+        <PageHeader PageName={"تماس با ما"} />
+      </header>
+      <main></main>
+    </>
+  );
 }
