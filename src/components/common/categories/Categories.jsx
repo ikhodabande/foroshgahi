@@ -41,6 +41,16 @@ export const Categories = () => {
     );
   }
 
+  // Skeleton loader for categories
+  const renderSkeletons = (count) => (
+    Array(count).fill("").map((_, idx) => (
+      <div key={idx} className="w-full">
+        <Skeleton height={120} />
+        <Skeleton width="80%" />
+      </div>
+    ))
+  );
+
   return (
     <>
       <header className="fixed top-0 w-full h-16 flex items-center justify-center bg-white z-10 mb-4">
@@ -60,15 +70,8 @@ export const Categories = () => {
       </header>
 
       <main className="grid grid-cols-2 gap-2 px-4 py-20">
-        {/* Render mGroup items */}
-        {isLoading ? (
-          Array(6).fill("").map((_, idx) => (
-            <div key={idx} className="w-full">
-              <Skeleton height={120} />
-              <Skeleton width="80%" />
-            </div>
-          ))
-        ) : (
+        {/* Render mGroup items or skeletons */}
+        {isLoading ? renderSkeletons(6) : (
           groups?.mGroup.map((category) => (
             <CategoriesCard
               id={category.groupId}
@@ -83,29 +86,24 @@ export const Categories = () => {
 
       {selectedGroupId && (
         <div className="fixed top-20 left-[50%] -translate-x-[50%] w-full bg-white grid grid-cols-2 gap-2 px-2">
-          {/* Render filtered sGroup items */}
-          {filteredSGroups?.length > 0 ? (
-            filteredSGroups.map((sGroup) => (
-              <CategoriesCard
-                id={sGroup.fldId}
-                imgSrc={sGroup.link}
-                key={sGroup.fldId}
-                categorieItems={sGroup.fldN_S_GroohKala}
-                onClick={() =>
-                  navigate(
-                    `/products/${sGroup?.fldC_M_GroohKala}/${sGroup?.fldC_S_GroohKala}`
-                  )
-                }
-              />
-            ))
-          ) : (
-            isLoading && (
-              Array(6).fill("").map((_, idx) => (
-                <div key={idx} className="w-full">
-                  <Skeleton height={120} />
-                  <Skeleton width="80%" />
-                </div>
+          {/* Render filtered sGroup items or skeletons */}
+          {isLoading ? renderSkeletons(6) : (
+            filteredSGroups?.length > 0 ? (
+              filteredSGroups.map((sGroup) => (
+                <CategoriesCard
+                  id={sGroup.fldId}
+                  imgSrc={sGroup.link}
+                  key={sGroup.fldId}
+                  categorieItems={sGroup.fldN_S_GroohKala}
+                  onClick={() =>
+                    navigate(
+                      `/products/${sGroup?.fldC_M_GroohKala}/${sGroup?.fldC_S_GroohKala}`
+                    )
+                  }
+                />
               ))
+            ) : (
+              <p className="text-center">دسته بندی ای یافت نشد!</p>
             )
           )}
         </div>
