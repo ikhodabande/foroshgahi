@@ -109,6 +109,7 @@ export const Home = () => {
             <>
               <SkeletonProductList />
               <SkeletonProductList />
+              <SkeletonProductList />
             </>
           ) : (
             groups?.mGroup.map((item, index) => <BestSellField key={index} data={item} />)

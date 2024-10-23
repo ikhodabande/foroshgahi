@@ -16,10 +16,9 @@ export default function ProfileTitle() {
           موجودی: <span>200هزارتومان</span>
         </p>
       </div>
-
       <div>
         <Link to={"/notifications"}>
-          <Badge color="red" count={5} overflowCount={4} offset={[24,-5]}>
+          <Badge color="red" count={5} overflowCount={4} offset={[24, -5]}>
             <HiOutlineBellAlert className="text-menu-lg  text-yellow-600 " />
           </Badge>
         </Link>
