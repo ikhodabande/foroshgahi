@@ -3,7 +3,7 @@ import axiosInstance from '../../config/apiConfig';
 
 // Fetch groups data from the API
 const fetchNotifications = async () => {
-  const response = await axiosInstance.post('/Store/GetNotifications');
+  const response = await axiosInstance.post('/Store/GetNotification');
   return response.data; // Optionally transform the data if needed
 };
 

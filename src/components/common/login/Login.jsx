@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { login } from "../../../store/slices/authslice/authSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -16,58 +16,137 @@ export const Login = () => {
   const [phoneNumber, setPhoneNumber] = useState(""); // Store phone number
   const [verificationCode, setVerificationCode] = useState(""); // Store verification code
   const [checkboxIsChecked, setCheckboxIsChecked] = useState(false);
-
-  const { mutate: sendSms, isLoading, data } = useSendSms();
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false); // Button state
+  const [codeVerificationLoading, setCodeVerificationLoading] = useState(false);
+  const [againCode, setAgainCode] = useState(false);
+  const { mutate: sendSms, isLoading, isPending } = useSendSms();
 
   const onChangeCheckBox = (e) => {
     setCheckboxIsChecked(e.target.checked);
   };
 
-  const handleNextStep = () => {
-    if (step === 1) {
-      // Validate phone number input
-      // if (!phoneNumber) {
-      //   message.error(
-      //     <p className="font-iranyekan">لطفا شماره تلفن را وارد کنید</p>
-      //   );
-      //   return;
-      // }
-      // if (!checkboxIsChecked) {
-      //   message.error(
-      //     <p className="font-iranyekan">لطفا تیک پذیرفتن شرایط را بزنید</p>
-      //   );
-      //   return;
-      // }
-      setStep(2)
-      const formData = new FormData();
-      formData.append("phoneNumber", phoneNumber);
+  const handelSendSms = () => {
+    const formData = new FormData();
+    formData.append("phoneNumber", phoneNumber);
+    setAgainCode(false);
+    
+    sendSms(formData, {
+      onSuccess: () => {
+        message.success(
+          <p className="font-iranyekan">کد فعال سازی ارسال شد.</p>
+        );
+        setStep(2); // Move to step 2 if SMS is sent
+        setIsButtonDisabled(false); // Re-enable the button
+      },
+      onError: () => {
+        message.error(
+          <p className="font-iranyekan">ارسال کد فعال سازی با مشکل مواجه شد.</p>
+        );
+      },
+    });
+  };
 
-      // Call the mutate function
-      sendSms(formData, {
-        onSuccess: () => {
-          message.success(
-            <p className="font-iranyekan">کد فعال سازی ارسال شد.</p>
-          );
-          setStep(2); // Move to step 2 if SMS is sent
-        },
-        onError: () => {
-          message.error(
-            <p className="font-iranyekan">
-              ارسال کد فعال سازی با مشکل مواجه شد.
-            </p>
-          );
-        },
-      });
-    } else if (step === 2) {
-      // Logic for verification code submission
+  // useEffect(() => {
+  //   if (phoneNumber.length === 11 && checkboxIsChecked) {
+  //     // Automatically send SMS when phone number is complete and checkbox is checked
+  //     const formData = new FormData();
+  //     formData.append("phoneNumber", phoneNumber);
+
+  //     setIsButtonDisabled(true); // Disable the button while SMS is being sent
+  //     sendSms(formData, {
+  //       onSuccess: () => {
+  //         message.success(
+  //           <p className="font-iranyekan">کد فعال سازی ارسال شد.</p>
+  //         );
+  //         setStep(2); // Move to step 2 if SMS is sent
+  //         setIsButtonDisabled(false); // Re-enable the button
+  //       },
+  //       onError: () => {
+  //         message.error(
+  //           <p className="font-iranyekan">
+  //             ارسال کد فعال سازی با مشکل مواجه شد.
+  //           </p>
+  //         );
+  //         setIsButtonDisabled(false); // Re-enable the button if there's an error
+  //       },
+  //     });
+  //   }
+  // }, [phoneNumber, checkboxIsChecked]); // Re-run when phone number or checkbox changes
+
+  useEffect(() => {
+    if (verificationCode.length === 6) {
+      setCodeVerificationLoading(true);
+      // Automatically submit the code when it's fully entered
       if (verificationCode === "123456") {
-        // Example code validation
-        setStep(3);
+        message.success("کد تایید شد");
+        setTimeout(() => {
+          setStep(3); // Move to step 3
+          setCodeVerificationLoading(false);
+        }, 1000);
       } else {
         message.error("کد وارد شده صحیح نمی باشد.");
+        setCodeVerificationLoading(false);
       }
-    } else {
-      // Dispatch the login action and navigate to the profile page
+    }
+  }, [verificationCode]); // Re-run when verification code changes
+
+  const handleNextStep = () => {
+    if (step === 1) {
+      if (phoneNumber.length === 11 && checkboxIsChecked) {
+        // Automatically send SMS when phone number is complete and checkbox is checked
+        const formData = new FormData();
+        formData.append("phoneNumber", phoneNumber);
+
+        // setIsButtonDisabled(true); // Disable the button while SMS is being sent
+        sendSms(formData, {
+          onSuccess: () => {
+            message.success(
+              <p className="font-iranyekan">کد فعال سازی ارسال شد.</p>
+            );
+            setStep(2); // Move to step 2 if SMS is sent
+            setIsButtonDisabled(false); // Re-enable the button
+            setTimeout(() => {
+              setAgainCode(true)
+            }, 10000);
+          },
+          onError: () => {
+            message.error(
+              <p className="font-iranyekan">
+                ارسال کد فعال سازی با مشکل مواجه شد.
+              </p>
+            );
+            setTimeout(() => {
+              setAgainCode(true)
+            }, 10000);
+            setStep(2); // Move to step 2 if SMS is sent////////////////////////////////for develop mode
+            setIsButtonDisabled(false); // Re-enable the button if there's an error
+          },
+        });
+      } else {
+        message.error(
+          <p className="font-iranyekan">
+            لطفاً گزینه پذیرفتن شرایط را انتخاب نمایید.
+          </p>
+        );
+      }
+    } else if (step === 2) {
+      if (verificationCode.length === 6) {
+        setCodeVerificationLoading(true);
+
+        // Automatically submit the code when it's fully entered
+        if (verificationCode === "123456") {
+          message.success("کد تایید شد");
+          setTimeout(() => {
+            setStep(3); // Move to step 3
+            setCodeVerificationLoading(false);
+          }, 1000);
+        } else {
+          message.error("کد وارد شده صحیح نمی باشد.");
+          setCodeVerificationLoading(false);
+        }
+      }
+    }
+    if (step === 3) {
       dispatch(login());
       navigate("/profile");
     }
@@ -121,12 +200,15 @@ export const Login = () => {
                   className="text-sm w-[47vw] text-center my-2"
                 />
                 <Button
+                  onClick={handleNextStep}
                   type="primary"
                   className="text-xs w-[47vw] shadow-lg"
-                  onClick={handleNextStep}
-                  loading={isLoading}
+                  disabled={isButtonDisabled || phoneNumber.length < 11}
+                  loading={isLoading || isPending}
                 >
-                  شماره تماس را تایید میکنم
+                  {isLoading || isPending
+                    ? "در حال ارسال..."
+                    : "شماره تماس را تایید میکنم"}{" "}
                 </Button>
               </div>
             </div>
@@ -143,7 +225,7 @@ export const Login = () => {
             <p className="text-xs px-14 text-center my-10">
               لطفا کد فعال سازی که به شماره شما ارسال شده را وارد نمایید.
             </p>
-            <div className="text-center">
+            <div className="text-center flex flex-col items-center justify-center">
               <Input
                 allowClear
                 maxLength={6}
@@ -154,11 +236,20 @@ export const Login = () => {
                 className="text-sm my-2 w-[47vw] text-center"
               />
               <Button
+                onClick={handleNextStep}
                 type="primary"
                 className="text-xs w-[47vw] shadow-lg"
-                onClick={handleNextStep}
+                disabled={verificationCode.length < 6}
+                loading={codeVerificationLoading}
               >
-                کد را تایید میکنم
+                {codeVerificationLoading ? "در حال تایید..." : "تایید کد"}
+              </Button>
+              <Button
+              onClick={handelSendSms}
+              type="primary"
+              disabled={!againCode}
+              className="text-xs my-2 w-[47vw] text-center">
+                دریافت مجدد کد تایید
               </Button>
             </div>
           </div>

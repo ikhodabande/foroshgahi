@@ -11,19 +11,27 @@ export default defineConfig({
       manifest: {
         name: 'فروشگاه وبکام',
         short_name: 'وبکام شاپ',
-        description: 'A Vite app with PWA support',
+        description: 'برنامه فروشگاهی وبکام',
+        lang: "fa",
+        start_url: "/",
+        scope: "/",
+        display: "fullscreen",
+        orientation: "portrait",
         theme_color: '#ffffff',
-        icons: [
+        "icons": [
           {
-            src: 'icons/icon-192x192.png',
-            sizes: '192x192',
-            type: 'image/png',
+            "src": "logo192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"  // Used without any modification
           },
           {
-            src: 'icons/icon-512x512.png',
-            sizes: '512x512',
-            type: 'image/png',
-          },
+            "src": "logo512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"  // Used without any modification
+          }
+          
         ],
       },
       workbox: {
