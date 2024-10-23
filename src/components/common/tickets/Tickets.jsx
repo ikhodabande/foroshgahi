@@ -1,7 +1,13 @@
-import React from 'react'
+import React from "react";
+import PageHeader from "../../modules/pageHeader-module/PageHeader";
 
 export default function Tickets() {
   return (
-    <div>Tickets</div>
-  )
+    <>
+      <header>
+        <PageHeader PageName={"تیکت های من"} />
+      </header>
+      <main></main>
+    </>
+  );
 }

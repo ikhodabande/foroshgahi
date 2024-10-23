@@ -1,7 +1,15 @@
-import React from 'react'
+import React from "react";
+import PageHeader from "../../modules/pageHeader-module/PageHeader";
 
 export default function Support() {
   return (
-    <div>Support</div>
-  )
+    <>
+      <header>
+        <PageHeader PageName={"پشتیبانی"} />
+      </header>
+      <main>
+        
+      </main>
+    </>
+  );
 }

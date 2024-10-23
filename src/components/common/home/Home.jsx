@@ -33,8 +33,7 @@ export const Home = () => {
     refetch: refetchRelations,
   } = useFetchRelations();
 
-  const HomeLoading =
-    groupsLoading || startDataLoading || relationsLoading ;
+  const HomeLoading = groupsLoading || startDataLoading || relationsLoading;
   const HomeError = groupsError || startDataError || relationsError;
 
   if (HomeError) {
@@ -63,14 +62,13 @@ export const Home = () => {
     <>
       <header className="sticky -top-10 w-full flex flex-col items-center justify-center bg-white z-10 mb-4">
         <div className="h-10 bg-logo flex items-center justify-center w-full">
-            <p className="font-iranyekanBold text-white text-sm">
-              {startData?.setting.fldEtelaResani ||
-                "با وبکام همیشه آنلاین باشید"}
-            </p>
+          <p className="font-iranyekanBold text-white text-sm">
+            {startData?.setting.fldEtelaResani || "با وبکام همیشه آنلاین باشید"}
+          </p>
         </div>
         <div className="h-16 flex items-center justify-center">
           {HomeLoading ? (
-            <Skeleton width={"90vw"} height={40}  />
+            <Skeleton width={"90vw"} height={40} />
           ) : (
             <SearchModule companyName={relations?.[0]?.fldN_Shobe} />
           )}
@@ -119,9 +117,9 @@ export const Home = () => {
             <div className="mt-6 ">
               <Skeleton width={120} height={30} />
               <div className="flex gap-2 max-w-[90vw] overflow-x-scroll">
-              <Skeleton width={"40vw"} height={150} />
-              <Skeleton width={"40vw"} height={150} />
-              <Skeleton width={"40vw"} height={150} />
+                <Skeleton width={"40vw"} height={150} />
+                <Skeleton width={"40vw"} height={150} />
+                <Skeleton width={"40vw"} height={150} />
               </div>
             </div>
           ) : (
