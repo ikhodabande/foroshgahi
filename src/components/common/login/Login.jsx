@@ -29,7 +29,7 @@ export const Login = () => {
     const formData = new FormData();
     formData.append("phoneNumber", phoneNumber);
     setAgainCode(false);
-    
+
     sendSms(formData, {
       onSuccess: () => {
         message.success(
@@ -106,8 +106,8 @@ export const Login = () => {
             setStep(2); // Move to step 2 if SMS is sent
             setIsButtonDisabled(false); // Re-enable the button
             setTimeout(() => {
-              setAgainCode(true)
-            }, 10000);
+              setAgainCode(true);
+            }, 60000);
           },
           onError: () => {
             message.error(
@@ -116,8 +116,8 @@ export const Login = () => {
               </p>
             );
             setTimeout(() => {
-              setAgainCode(true)
-            }, 10000);
+              setAgainCode(true);
+            }, 60000);
             setStep(2); // Move to step 2 if SMS is sent////////////////////////////////for develop mode
             setIsButtonDisabled(false); // Re-enable the button if there's an error
           },
@@ -245,11 +245,12 @@ export const Login = () => {
                 {codeVerificationLoading ? "در حال تایید..." : "تایید کد"}
               </Button>
               <Button
-              onClick={handelSendSms}
-              type="primary"
-              disabled={!againCode}
-              className="text-xs my-2 w-[47vw] text-center">
-                دریافت مجدد کد تایید
+                onClick={handelSendSms}
+                type="primary"
+                disabled={!againCode}
+                className="text-xs my-2 w-[47vw] text-center"
+              >
+                {againCode ? "دریافت مجدد کد تایید" : ""}
               </Button>
             </div>
           </div>
