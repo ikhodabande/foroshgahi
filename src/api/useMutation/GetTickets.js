@@ -3,7 +3,7 @@ import axiosInstance from '../../config/apiConfig';
 
 // Fetch groups data from the API
 const fetchTickets = async () => {
-  const response = await axiosInstance.post('/StoreTools/GetTickets');
+  const response = await axiosInstance.post('/Store/GetTickets');
   return response.data; // Optionally transform the data if needed
 };
 
