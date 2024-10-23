@@ -1,7 +1,8 @@
-import { Avatar } from "antd";
+import { Avatar, Badge } from "antd";
 import React from "react";
 import { LuUser2 } from "react-icons/lu";
 import { HiOutlineBellAlert } from "react-icons/hi2";
+import { Link } from "react-router-dom";
 
 export default function ProfileTitle() {
   return (
@@ -15,11 +16,13 @@ export default function ProfileTitle() {
           موجودی: <span>200هزارتومان</span>
         </p>
       </div>
-     
+
       <div>
-        <div>
-          <HiOutlineBellAlert className="text-display-lg  text-gray-500 " />
-        </div>
+        <Link to={"/notifications"}>
+          <Badge color="red" count={5} overflowCount={4} offset={[24,-5]}>
+            <HiOutlineBellAlert className="text-menu-lg  text-yellow-600 " />
+          </Badge>
+        </Link>
       </div>
     </div>
   );

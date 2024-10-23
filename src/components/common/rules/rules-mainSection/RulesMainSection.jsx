@@ -30,11 +30,11 @@ export default function RulesMainSection() {
 
   return (
     <div className="flex flex-col items-center justify-center pt-20 px-4 gap-4">
-      <Card className="w-full max-w-[800px]">
-        <Collapse accordion>
+      <Card className="w-[95vw] max-w-[800px] border-none ">
+        <Collapse ghost accordion>
           {rulesData.map((rule, index) => (
-            <Panel header={rule.title} key={index}>
-              <p>{rule.content}</p>
+            <Panel className="shadow my-4 font-iranyekanBold " header={rule.title} key={index}>
+              <p className="font-iranyekan">{rule.content}</p>
             </Panel>
           ))}
         </Collapse>

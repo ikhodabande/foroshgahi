@@ -1,5 +1,6 @@
 import React from "react";
 import PageHeader from "../../modules/pageHeader-module/PageHeader";
+import TicketsCard from "./tickets-card/TicketsCard";
 
 export default function Tickets() {
   return (
@@ -7,7 +8,9 @@ export default function Tickets() {
       <header>
         <PageHeader PageName={"تیکت های من"} />
       </header>
-      <main></main>
+      <main>
+        <TicketsCard />
+      </main>
     </>
   );
 }
