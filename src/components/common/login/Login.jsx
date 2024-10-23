@@ -18,7 +18,8 @@ export const Login = () => {
   const [checkboxIsChecked, setCheckboxIsChecked] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false); // Button state
   const [codeVerificationLoading, setCodeVerificationLoading] = useState(false);
-  const [againCode, setAgainCode] = useState(false);
+  const [againCode, setAgainCode] = useState(null);
+  const [countdown, setCountdown] = useState("60"); // Countdown timer
   const { mutate: sendSms, isLoading, isPending } = useSendSms();
 
   const onChangeCheckBox = (e) => {
@@ -29,7 +30,7 @@ export const Login = () => {
     const formData = new FormData();
     formData.append("phoneNumber", phoneNumber);
     setAgainCode(false);
-
+    setCountdown("60");
     sendSms(formData, {
       onSuccess: () => {
         message.success(
@@ -90,6 +91,23 @@ export const Login = () => {
     }
   }, [verificationCode]); // Re-run when verification code changes
 
+  useEffect(() => {
+    let timer;
+    if (!againCode) {
+      // Start the countdown if againCode is false
+      timer = setInterval(() => {
+        setCountdown((prev) => {
+          if (prev === 1) {
+            clearInterval(timer);
+            setAgainCode(true); // Enable the button after countdown
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
+    return () => clearInterval(timer); // Clean up the timer
+  }, [againCode]);
+
   const handleNextStep = () => {
     if (step === 1) {
       if (phoneNumber.length === 11 && checkboxIsChecked) {
@@ -105,9 +123,7 @@ export const Login = () => {
             );
             setStep(2); // Move to step 2 if SMS is sent
             setIsButtonDisabled(false); // Re-enable the button
-            setTimeout(() => {
-              setAgainCode(true);
-            }, 60000);
+            setAgainCode(false);
           },
           onError: () => {
             message.error(
@@ -115,9 +131,7 @@ export const Login = () => {
                 ارسال کد فعال سازی با مشکل مواجه شد.
               </p>
             );
-            setTimeout(() => {
-              setAgainCode(true);
-            }, 60000);
+            setAgainCode(false)
             setStep(2); // Move to step 2 if SMS is sent////////////////////////////////for develop mode
             setIsButtonDisabled(false); // Re-enable the button if there's an error
           },
@@ -250,7 +264,7 @@ export const Login = () => {
                 disabled={!againCode}
                 className="text-xs my-2 w-[47vw] text-center"
               >
-                {againCode ? "دریافت مجدد کد تایید" : ""}
+              {againCode ? "دریافت مجدد کد تایید" : `صبر کنید... (${countdown}ثانیه)`}
               </Button>
             </div>
           </div>
