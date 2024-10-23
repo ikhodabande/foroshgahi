@@ -1,69 +1,134 @@
-import React, { useEffect } from "react";
+import React from "react";
 import SearchModule from "../../modules/search-module/SearchModule";
 import { HomeTitleSection } from "./hometitle-section/HomeTitleSection";
 import { AvatarModule } from "../../modules/avatar-module/AvatarModule";
 import HomeBtnItems from "./home-btn-items/HomeBtnItems";
 import { BestSellField } from "../products/BestSell-field/BestSellField";
-import { TrendSellField } from "../products/TrendSell-field/TrendSellField";
-import NewProductsField from "../products/newProducts-field/NewProductsField";
-import AllProducts from "../products/all-products/AllProducts";
 import { useFetchGroups } from "../../../api/useQuery/GetGroups";
 import { useFetchStartData } from "../../../api/useQuery/StartData";
 import { useFetchRelations } from "../../../api/useMutation/GetRelations";
+import { Spin, Result, Button } from "antd";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css"; // import skeleton styles
 
 export const Home = () => {
-  const { data: groups, isLoading, isError } = useFetchGroups();
+  const {
+    data: groups,
+    isLoading: groupsLoading,
+    isError: groupsError,
+    refetch: refetchGroups,
+  } = useFetchGroups();
+
   const {
     data: startData,
     isLoading: startDataLoading,
     isError: startDataError,
+    refetch: refetchStartData,
   } = useFetchStartData();
-  const {data: Relations, isLoading: RelationLoading, isError: RelationError} = useFetchRelations();
 
-  if (isLoading) {
-    return <div className="text-center">در حال بارگذاری...</div>; // Loading message
-  }
+  const {
+    data: relations,
+    isLoading: relationsLoading,
+    isError: relationsError,
+    refetch: refetchRelations,
+  } = useFetchRelations();
 
-  if (isError) {
+  const HomeLoading =
+    groupsLoading || startDataLoading || relationsLoading ;
+  const HomeError = groupsError || startDataError || relationsError;
+
+  if (HomeError) {
+    const handleRetry = () => {
+      refetchGroups();
+      refetchStartData();
+      refetchRelations();
+    };
+
     return (
-      <div className="text-center text-red-500">خطا در بارگذاری داده‌ها</div>
-    ); // Error message
+      <Result
+        className="mt-[50%]"
+        status="error"
+        title="خطا در بارگزاری اطلاعات"
+        subTitle="لطفاً دوباره تلاش کنید."
+        extra={
+          <Button type="primary" onClick={handleRetry}>
+            تلاش دوباره
+          </Button>
+        }
+      />
+    );
   }
 
   return (
     <>
-      <header className=" sticky -top-10 w-full flex flex-col items-center justify-center bg-white z-10 mb-4">
+      <header className="sticky -top-10 w-full flex flex-col items-center justify-center bg-white z-10 mb-4">
         <div className="h-10 bg-logo flex items-center justify-center w-full">
-          <p className="font-iranyekanBold text-white text-sm">{startData?.setting.fldEtelaResani || "با وبکام همیشه آنلاین باشید"}</p>
+            <p className="font-iranyekanBold text-white text-sm">
+              {startData?.setting.fldEtelaResani ||
+                "با وبکام همیشه آنلاین باشید"}
+            </p>
         </div>
         <div className="h-16 flex items-center justify-center">
-          <SearchModule companyName={Relations[0]?.fldN_Shobe}/>
+          {HomeLoading ? (
+            <Skeleton width={"90vw"} height={40}  />
+          ) : (
+            <SearchModule companyName={relations?.[0]?.fldN_Shobe} />
+          )}
         </div>
       </header>
-      <main className="w-[100vw] flex flex-col items-center justify-center  mx-auto ">
+
+      <main className="w-[100vw] flex flex-col items-center justify-center mx-auto">
         <div className="flex flex-col items-center justify-center bg-white pb-2 h-full">
           <div className="flex items-center justify-center w-[100vw] pr-4">
             <div>
-              <HomeTitleSection icon={startData?.setting.fldImageSliderLink}  />
+              {HomeLoading ? (
+                <Skeleton width={150} height={150} />
+              ) : (
+                <HomeTitleSection
+                  icon={startData?.setting.fldImageSliderLink}
+                />
+              )}
             </div>
             <div className="flex items-center justify-center pr-24 overflow-x-scroll snap-proximity snap-x scroll-smooth">
-              <AvatarModule />
+              {HomeLoading ? (
+                <div className="flex gap-2">
+                  <Skeleton width={80} height={80} circle />
+                  <Skeleton width={80} height={80} circle />
+                  <Skeleton width={80} height={80} circle />
+                </div>
+              ) : (
+                <AvatarModule />
+              )}
             </div>
           </div>
           <div className="w-[100vw] flex items-center justify-start px-2">
-            <HomeBtnItems data={groups.mGroup} />
+            {HomeLoading ? (
+              <div className="flex items-center gap-2 mt-2 mx-2">
+                <Skeleton width={100} height={40} />
+                <Skeleton width={100} height={40} />
+                <Skeleton width={100} height={40} />
+              </div>
+            ) : (
+              <HomeBtnItems data={groups?.mGroup} />
+            )}
           </div>
         </div>
 
         <div className="flex flex-col items-center justify-center w-full sm:max-w-[370px] pb-20">
-         {
-          groups?.mGroup.map((item, index) => 
-            <BestSellField key={index}  data={item}/>
-          )
-         }
-          {/* <TrendSellField data={groups.mGroup} />
-          <NewProductsField />
-          <AllProducts /> */}
+          {HomeLoading ? (
+            <div className="mt-6 ">
+              <Skeleton width={120} height={30} />
+              <div className="flex gap-2 max-w-[90vw] overflow-x-scroll">
+              <Skeleton width={"40vw"} height={150} />
+              <Skeleton width={"40vw"} height={150} />
+              <Skeleton width={"40vw"} height={150} />
+              </div>
+            </div>
+          ) : (
+            groups?.mGroup.map((item, index) => (
+              <BestSellField key={index} data={item} />
+            ))
+          )}
         </div>
       </main>
     </>
