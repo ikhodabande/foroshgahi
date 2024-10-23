@@ -11,6 +11,7 @@ import {
   QueryClientProvider,
   useQueryClient,
 } from "@tanstack/react-query";
+import fa_IR from "antd/locale/fa_IR";
 
 // Create a new instance of QueryClient
 const queryClient = new QueryClient();
@@ -18,6 +19,7 @@ const queryClient = new QueryClient();
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ConfigProvider
+      locale={fa_IR}
       direction="rtl"
       theme={{
         token: { fontFamily: "iranYekan", colorPrimary: "#FF4600" },
