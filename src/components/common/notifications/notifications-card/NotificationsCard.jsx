@@ -3,7 +3,7 @@ import { Card, List, Badge, Typography } from "antd";
 
 const { Title } = Typography;
 
-export default function NotificationsCard() {
+export default function NotificationsCard({data}) {
   const notifications = [
     {
       title: "پیام جدید از پشتیبانی",
@@ -27,15 +27,16 @@ export default function NotificationsCard() {
       <Card className="w-full max-w-[800px] shadow-lg" >
         <List
           itemLayout="horizontal"
-          dataSource={notifications}
+          dataSource={data}
           renderItem={(item) => (
-            <List.Item>
+            <List.Item
+            key={item.Id}>
               <List.Item.Meta
                 avatar={
-                  <Badge dot={!item.isRead} color="red" />
+                  <Badge dot={!item.fldShow} color="red" />
                 }
-                title={<span className={!item.isRead ? "font-bold" : ""}>{item.title}</span>}
-                description={item.description}
+                title={<span className={!item.fldShow ? "font-bold" : ""}>{item.fldTitle}</span>}
+                description={item.fldBody}
               />
             </List.Item>
           )}
