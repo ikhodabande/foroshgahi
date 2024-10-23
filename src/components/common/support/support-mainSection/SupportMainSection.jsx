@@ -28,14 +28,27 @@ export default function SupportMainSection() {
   return (
     <div className="flex flex-col items-center justify-center py-16 gap-4 px-4 ">
       <Row gutter={[16, 16]} justify="center">
+        <Card
+          bordered
+          className="w-full h-auto flex flex-col justify-center shadow"
+        >
+          <Title level={5}>سوالات متداول</Title>
+          <Collapse accordion>
+            {faqData.map((item, index) => (
+              <Panel header={item.question} key={index}>
+                <p>{item.answer}</p>
+              </Panel>
+            ))}
+          </Collapse>
+        </Card>
         <Col xs={24} sm={12}>
           <Card
             bordered
             className="w-full h-[120px] flex flex-col items-center justify-center shadow-lg border "
           >
             <div className="flex items-center justify-between w-full">
-              <BiSupport className="text-menu-lg mx-2 mb-2 text-gray-500" />
-              <Title level={5} className="font-iranyekanBold !text-gray-500">
+              <BiSupport className="text-menu-lg mx-2 mb-2 text-logo " />
+              <Title level={5} className="font-iranyekanBold !text-logo">
                 تماس با واحد پشتیبانی
               </Title>
             </div>
@@ -46,31 +59,17 @@ export default function SupportMainSection() {
             bordered
             className="w-full h-[120px] flex flex-col items-center justify-center shadow-lg"
           >
-              <div className="flex items-center justify-between w-full">
-              <MdRecordVoiceOver className="text-menu-lg mx-2 mb-2 text-gray-500" />
-              <Title level={5} className="font-iranyekanBold !text-gray-500">
-              تماس با واحد فروش
-            </Title>
+            <div className="flex items-center justify-between w-full">
+              <MdRecordVoiceOver className="text-menu-lg mx-2 mb-2 text-logo" />
+              <Title level={5} className="font-iranyekanBold !text-logo">
+                تماس با واحد فروش
+              </Title>
             </div>
-            
           </Card>
         </Col>
       </Row>
 
       {/* FAQ Section */}
-      <Card
-        bordered
-        className="w-full h-auto flex flex-col justify-center shadow"
-      >
-        <Title level={5}>سوالات متداول</Title>
-        <Collapse accordion>
-          {faqData.map((item, index) => (
-            <Panel header={item.question} key={index}>
-              <p>{item.answer}</p>
-            </Panel>
-          ))}
-        </Collapse>
-      </Card>
 
       {/* <Card
         bordered

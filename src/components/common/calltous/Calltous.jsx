@@ -1,5 +1,6 @@
 import React from "react";
 import PageHeader from "../../modules/pageHeader-module/PageHeader";
+import CallMainSection from "./call-mainSection/CallMainSection";
 
 export default function Calltous() {
   return (
@@ -7,7 +8,9 @@ export default function Calltous() {
       <header>
         <PageHeader PageName={"تماس با ما"} />
       </header>
-      <main></main>
+      <main>
+        <CallMainSection />
+      </main>
     </>
   );
 }
