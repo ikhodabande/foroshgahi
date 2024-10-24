@@ -2,23 +2,20 @@ import React, { useEffect, useState } from "react";
 import PageHeader from "../../modules/pageHeader-module/PageHeader";
 import { ProductsCard } from "./products-card/ProductsCard";
 import SearchModule from "../../modules/search-module/SearchModule";
-import { Pagination, message } from "antd";
+import { message } from "antd";
 import { useParams } from "react-router-dom";
 import { useGetArticleByGroupPaging } from "../../../api/useMutation/GetArticleByGroupPaging";
 
 export const Products = () => {
   const { sCode, mCode } = useParams();
-
+  const [showBtns, setShowBtn] = useState(true);
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(30); // Adjust the number of products per page as needed
-  const [totalProducts, setTotalProducts] = useState(0); // Total product count from the API
+  const [pageSize] = useState(10); // Number of products per page
+  const [totalProducts, setTotalProducts] = useState(0); // Total product count from API
+  const [isFetching, setIsFetching] = useState(false); // To avoid multiple fetches
 
-  const {
-    mutate: getProducts,
-    isLoading,
-    isError,
-  } = useGetArticleByGroupPaging();
+  const { mutate: getProducts } = useGetArticleByGroupPaging();
 
   // Fetch products using the API with the page and size
   const fetchProducts = (page, size) => {
@@ -31,30 +28,49 @@ export const Products = () => {
       haveDiscount: "false",
     };
 
+    setIsFetching(true); // Set fetching state
     getProducts(formData, {
       onSuccess: (data) => {
-        setProducts(data); // Assuming the data contains the products array
-        setTotalProducts(data.totalCount); // Adjust this if the total count is returned separately
-        message.success(
-          <p className="font-iranyekan">کالاها با موفقیت دریافت شدند.</p>
-        );
+        if (Array.isArray(data)) {
+          // Ensure correct structure
+          setTotalProducts(data.length || 0); // Set total products correctly
+          setProducts((prevProducts) => [...prevProducts, ...data]); // Append new products
+          message.success(
+            <p className="font-iranyekan">کالاها با موفقیت دریافت شدند.</p>
+          );
+        } else {
+          message.error(<p>Data format is incorrect</p>);
+        }
+        setIsFetching(false); // Stop fetching
       },
       onError: () => {
+        setIsFetching(false); // Stop fetching
         message.error(<p>مشکل در دریافت کالاها، لطفا بعدا تلاش کنید.</p>);
       },
     });
   };
 
-  // UseEffect to load products when the page or page size changes
-  useEffect(() => {
-    fetchProducts(currentPage, pageSize);
-  }, [currentPage, pageSize, mCode, sCode]); // Include mCode and sCode in dependencies in case they change
-
-  // Handle pagination change
-  const handlePageChange = (page, size) => {
-    setCurrentPage(page);
-    setPageSize(size);
+  // Infinite scroll - Detect when the user reaches the bottom of the page
+  const handleScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop !==
+      document.documentElement.offsetHeight
+    )
+      return;
+    if (!isFetching) {
+      setCurrentPage((prevPage) => prevPage + 1);
+    }
   };
+
+  useEffect(() => {
+    // Fetch products whenever the current page changes
+    fetchProducts(currentPage, pageSize);
+  }, [currentPage, pageSize, mCode, sCode]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isFetching, products]);
 
   return (
     <>
@@ -66,32 +82,24 @@ export const Products = () => {
           <SearchModule companyName={"محصولات وبکام"} />
         </div>
         <div className="grid grid-cols-1 gap-2 max-w-[100vw] pb-16 mx-auto overflow-x-auto snap-mandatory snap-x px-4 scroll-px-6">
-          {products.map((product) => (
+          {products?.map((product, index) => (
             <ProductsCard
-              key={product.fldId}
+              key={index}
               customeClass={"min-w-[90px] min-h-[350px]"}
               imgH={250}
               imgW={325}
-              imgSrc={product.fldLink}
+              productId={product.fldId}
+              productImg={product.fldLink}
               productName={product.fldN_Kala}
-              price={product.fldFee}
+              productPrice={product.fldFee.toLocaleString()}
+              productInventory={product.fldMande}
+              productUnit={product.fldN_Vahed}
               inStock={product.fldMande} // Assuming 'fldMande' represents stock count
+              showBtns={showBtns}
             />
           ))}
         </div>
-        {/* Ant Design Pagination */}
-        <div className="w-full h-full flex items-center relative pt-14">
-          <Pagination
-            showSizeChanger={false}
-            responsive
-            current={currentPage}
-            pageSize={pageSize}
-            total={10}
-            onChange={handlePageChange}
-            className="!absolute !bottom-16 left-[50%] -translate-x-[50%] px-3 flex !py-0 !my-0 items-center justify-between  !h-10"
-            style={{ marginTop: 20, textAlign: "center" }}
-          />
-        </div>
+        {/* {isFetching && <p>Loading more products...</p>} */}
       </main>
     </>
   );

@@ -18,10 +18,10 @@ export const BestSellField = ({ data, groups }) => {
 
       // Prepare the formData for the API request
       const formData = {
-        mainGroupCode: data?.groupId,
-        sideGroupCode: sideGroup[0]?.fldC_S_GroohKala || null, // Handle side group code
+        mainGroupId: data?.groupId,
+        subGroupId: sideGroup[0]?.fldC_S_GroohKala || null, // Handle side group code
         pageId: "1",
-        sizeOfPage: "10",
+        sizeOfPage: "30",
         inStock: "false",
         haveDiscount: "false",
       };
@@ -43,7 +43,7 @@ export const BestSellField = ({ data, groups }) => {
         <Link className="text-xs pt-1 text-logo">مشاهده بیشتر</Link>
       </div>
 
-      <div className="flex items-center flex-nowrap overflow-x-auto snap-mandatory snap-x px-2 scroll-px-6">
+      <div className="flex items-center flex-nowrap overflow-x-auto snap-mandatory snap-x px-2 ">
         {GetArticleByGroupPending ? (
           // Display skeleton loader when pending
           <>
