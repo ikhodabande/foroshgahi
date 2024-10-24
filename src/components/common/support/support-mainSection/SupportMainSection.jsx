@@ -46,9 +46,9 @@ export default function SupportMainSection() {
             bordered
             className="w-full h-[120px] flex flex-col items-center justify-center shadow-lg border "
           >
-            <div className="flex items-center justify-between w-full">
-              <BiSupport className="text-menu-lg mx-2 mb-2 text-logo " />
-              <Title level={5} className="font-iranyekanBold !text-logo">
+            <div className="flex items-center justify-between w-full text-gray-500">
+              <BiSupport className="text-menu-lg mx-2 mb-2  " />
+              <Title level={5} className="font-iranyekanBold text-gray-500">
                 تماس با واحد پشتیبانی
               </Title>
             </div>
@@ -59,9 +59,9 @@ export default function SupportMainSection() {
             bordered
             className="w-full h-[120px] flex flex-col items-center justify-center shadow-lg"
           >
-            <div className="flex items-center justify-between w-full">
-              <MdRecordVoiceOver className="text-menu-lg mx-2 mb-2 text-logo" />
-              <Title level={5} className="font-iranyekanBold !text-logo">
+            <div className="flex items-center justify-between w-full text-gray-500">
+              <MdRecordVoiceOver className="text-menu-lg mx-2 mb-2 " />
+              <Title level={5} className="font-iranyekanBold text-gray-500">
                 تماس با واحد فروش
               </Title>
             </div>
