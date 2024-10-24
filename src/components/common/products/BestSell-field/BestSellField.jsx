@@ -43,7 +43,7 @@ export const BestSellField = ({ data, groups }) => {
         <Link className="text-xs pt-1 text-logo">مشاهده بیشتر</Link>
       </div>
 
-      <div className="flex items-center flex-nowrap overflow-x-auto snap-mandatory snap-x px-2 ">
+      <div className="flex items-center flex-nowrap overflow-y-hidden overflow-x-auto snap-mandatory snap-x px-2 ">
         {GetArticleByGroupPending ? (
           // Display skeleton loader when pending
           <>
