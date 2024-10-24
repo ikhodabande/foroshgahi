@@ -1,47 +1,47 @@
 import React, { useEffect, useState } from "react";
 import { ProductsCard } from "../products-card/ProductsCard";
 import { useGetArticleByGroup } from "../../../../api/useMutation/GetArticleByGroup";
-import { message } from "antd";
+import { Button, message } from "antd";
 import { useGetArticleByGroupPaging } from "../../../../api/useMutation/GetArticleByGroupPaging";
+import { Link } from "react-router-dom";
 
 export const BestSellField = ({ data, groups }) => {
-  const {mutate: GetArticleByGroup} = useGetArticleByGroupPaging();
+  const { mutate: GetArticleByGroup } = useGetArticleByGroupPaging();
   const [articles, setArticles] = useState([]); // State to hold the fetched articles
-  
+
   useEffect(() => {
     if (data && groups?.sGroup) {
       // Filter the side group based on main group ID
       const sideGroup = groups?.sGroup.filter(
         (item) => item.fldC_M_GroohKala === data?.groupId
       );
-      
+
       // Prepare the formData for the API request
       const formData = {
-          mainGroupCode: data?.groupId,
-          sideGroupCode: sideGroup[0]?.fldC_S_GroohKala || null, // Handle side group code
-          pageId: "1",
-          sizeOfPage: "10",
-          inStock: "false",
-          haveDiscount: "false",
-        };
+        mainGroupCode: data?.groupId,
+        sideGroupCode: sideGroup[0]?.fldC_S_GroohKala || null, // Handle side group code
+        pageId: "1",
+        sizeOfPage: "10",
+        inStock: "false",
+        haveDiscount: "false",
+      };
 
       // Fetch the articles by group
       GetArticleByGroup(formData, {
         onSuccess: (response) => {
           setArticles(response || []); // Handle missing data
-          console.log(articles)
-          message.success(<p>کالاها با موفقیت دریافت شد</p>);
         },
-        onError: () => {
-          message.error(<p>خطا در بارگزاری کالاها</p>);
-        },
+        onError: () => {},
       });
     }
   }, [data, groups, GetArticleByGroup]);
 
   return (
     <div className="w-full my-2 mx-2">
-      <p className="mb-4 mx-4 font-iranyekanBold">{data?.groupName}</p>
+      <div className="flex items-start justify-between pl-3 w-full">
+        <p className="mb-4 mx-4 font-iranyekanBold">{data?.groupName}</p>
+        <Link className="text-xs pt-1 text-logo ">مشاهده بیشتر</Link>
+      </div>
       <div className="flex items-center flex-nowrap overflow-x-auto snap-mandatory snap-x px-2 scroll-px-6">
         {articles?.length > 0 ? (
           // Render each article inside ProductsCard
@@ -49,9 +49,9 @@ export const BestSellField = ({ data, groups }) => {
             <ProductsCard
               key={item.fldId}
               customeClass={"min-w-[150px] min-h-[150px]"}
-              productImg={item.fldLink || 'default_image_link'} // Fallback for missing image
+              productImg={item.fldLink || "default_image_link"} // Fallback for missing image
               productPrice={(item.fldFee || 0).toLocaleString()} // Fallback for missing price
-              productName={item.fldN_Kala || 'نامشخص'} // Fallback for missing name
+              productName={item.fldN_Kala || "نامشخص"} // Fallback for missing name
               imgH={140}
               imgW={149}
             />

@@ -4,16 +4,16 @@ import { IoPerson } from "react-icons/io5";
 export const AvatarModule = () => {
   const data = [
     {
-      name: "کفش",
+      name: "استوری",
     },
     {
-      name: "کفش",
+      name: "استوری",
     },
     {
-      name: "کفش",
+      name: "استوری",
     },
     {
-      name: "کفش",
+      name: "استوری",
     },
   ];
   return (

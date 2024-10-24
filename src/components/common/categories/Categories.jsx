@@ -6,6 +6,7 @@ import { FiArrowRight } from "react-icons/fi";
 import { Button, Result } from "antd";
 import { useNavigate } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
+import PageHeader from "../../modules/pageHeader-module/PageHeader";
 
 export const Categories = () => {
   const { data: groups, isLoading, isError, refetch } = useFetchGroups(); // Added refetch for retry
@@ -54,6 +55,7 @@ export const Categories = () => {
   return (
     <>
       <header className="fixed top-0 w-full h-16 flex items-center justify-center bg-white z-10 mb-4">
+        <PageHeader PageName={"دسته بندی"}/>
         {selectedGroupId ? (
           <div className="w-full text-end px-3">
             <Button

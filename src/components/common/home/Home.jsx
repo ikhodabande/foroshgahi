@@ -87,11 +87,13 @@ export const Home = () => {
       <main className="w-[100vw] flex flex-col items-center justify-center mx-auto">
         <div className="flex flex-col items-center justify-center bg-white pb-2 h-full">
           <div className="flex items-center justify-center w-[100vw] pr-4">
-            {HomeLoading ? (
+           <div >
+           {HomeLoading ? (
               <Skeleton width={150} height={150} />
             ) : (
               <HomeTitleSection icon={startData2?.setting.fldImageSliderLink} />
             )}
+           </div>
             <div className="flex items-center justify-center pr-16 overflow-x-scroll snap-proximity snap-x scroll-smooth">
               {HomeLoading ? (
                 <div className="flex gap-2 ml-[90px] mb-10">
