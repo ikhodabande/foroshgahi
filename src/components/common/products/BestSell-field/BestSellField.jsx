@@ -1,53 +1,65 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ProductsCard } from "../products-card/ProductsCard";
-import Item from "antd/es/list/Item";
+import { useGetArticleByGroup } from "../../../../api/useMutation/GetArticleByGroup";
+import { message } from "antd";
+import { useGetArticleByGroupPaging } from "../../../../api/useMutation/GetArticleByGroupPaging";
 
-export const BestSellField = ({data}) => {
-  // const data = [
-  //   {
-  //     name: "کفش",
-  //     price: "200",
-  //     image: "https://picsum.photos/150/140",
-  //   },
-  //   {
-  //     name: "لباس",
-  //     price: "200",
-  //     image: "https://picsum.photos/150/140",
-  //   },
-  //   {
-  //     name: "پیراهن",
-  //     price: "200",
-  //     image: "https://picsum.photos/150/140",
-  //   },
-  //   {
-  //     name: "فرش",
-  //     price: "200",
-  //     image: "https://picsum.photos/150/140",
-  //   },
-  //   {
-  //     name: "موبایل",
-  //     price: "200",
-  //     image: "https://picsum.photos/150/140",
-  //   },
-  // ];
+export const BestSellField = ({ data, groups }) => {
+  const {mutate: GetArticleByGroup} = useGetArticleByGroupPaging();
+  const [articles, setArticles] = useState([]); // State to hold the fetched articles
+  
+  useEffect(() => {
+    if (data && groups?.sGroup) {
+      // Filter the side group based on main group ID
+      const sideGroup = groups?.sGroup.filter(
+        (item) => item.fldC_M_GroohKala === data?.groupId
+      );
+      
+      // Prepare the formData for the API request
+      const formData = {
+          mainGroupCode: data?.groupId,
+          sideGroupCode: sideGroup[0]?.fldC_S_GroohKala || null, // Handle side group code
+          pageId: "1",
+          sizeOfPage: "10",
+          inStock: "false",
+          haveDiscount: "false",
+        };
+
+      // Fetch the articles by group
+      GetArticleByGroup(formData, {
+        onSuccess: (response) => {
+          setArticles(response || []); // Handle missing data
+          console.log(articles)
+          message.success(<p>کالاها با موفقیت دریافت شد</p>);
+        },
+        onError: () => {
+          message.error(<p>خطا در بارگزاری کالاها</p>);
+        },
+      });
+    }
+  }, [data, groups, GetArticleByGroup]);
+
   return (
-    <>
-      <div className="w-full my-2 mx-2 ">
-        <p className="mb-4 mx-4 font-iranyekanBold">{data.groupName} </p>
-        <div className="flex  items-center flex-nowrap overflow-x-auto snap-mandatory snap-x px-2  scroll-px-6">
-          
-            {/* <ProductsCard
+    <div className="w-full my-2 mx-2">
+      <p className="mb-4 mx-4 font-iranyekanBold">{data?.groupName}</p>
+      <div className="flex items-center flex-nowrap overflow-x-auto snap-mandatory snap-x px-2 scroll-px-6">
+        {articles?.length > 0 ? (
+          // Render each article inside ProductsCard
+          articles?.map((item) => (
+            <ProductsCard
+              key={item.fldId}
               customeClass={"min-w-[150px] min-h-[150px]"}
-              productImg={data.groupName}
-              productPrice={item.price}
-              productName={item.name}
-              key={index}
+              productImg={item.fldLink || 'default_image_link'} // Fallback for missing image
+              productPrice={(item.fldFee || 0).toLocaleString()} // Fallback for missing price
+              productName={item.fldN_Kala || 'نامشخص'} // Fallback for missing name
               imgH={140}
               imgW={149}
-            /> */}
-       
-        </div>
+            />
+          ))
+        ) : (
+          <p>محصولی یافت نشد</p>
+        )}
       </div>
-    </>
+    </div>
   );
 };

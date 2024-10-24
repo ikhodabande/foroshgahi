@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 export const HomeTitleSection = ({Notif, icon, }) => {
   return (
     <>
-      <div className="w-[180px] sm:w-[350px] h-[150px]   bg-white text-logo rounded-xl relative shadow-lg  flex flex-col items-center">
-       <img src={icon} className="object-cover  rounded-lg shadow-lg" alt="" />
+      <div className="w-full h-full sm:w-[160px] sm:h-[150px]   bg-white text-logo rounded-xl relative shadow-lg  flex flex-col items-center">
+       <img src={icon} className="object-cover w-full h-full rounded-lg shadow-lg" alt="" />
         {/* <p className=" mt-4  text-sm ">مجصولات </p> */}
         {/* <p className=" px-6 text-lg w-full text-start font-iranyekanBold">
           وبکام

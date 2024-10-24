@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SearchModule from "../../modules/search-module/SearchModule";
 import { HomeTitleSection } from "./hometitle-section/HomeTitleSection";
 import { AvatarModule } from "../../modules/avatar-module/AvatarModule";
 import HomeBtnItems from "./home-btn-items/HomeBtnItems";
 import { BestSellField } from "../products/BestSell-field/BestSellField";
 import { useFetchGroups } from "../../../api/useQuery/GetGroups";
-import { useFetchStartData } from "../../../api/useQuery/StartData";
+import { useFetchStartData2 } from "../../../api/useMutation/StartData2";
 import { useFetchRelations } from "../../../api/useMutation/GetRelations";
-import { Spin, Result, Button } from "antd";
+import { Result, Button } from "antd";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css"; // Import skeleton styles
 
@@ -39,16 +39,17 @@ const SkeletonProductList = () => (
 
 export const Home = () => {
   const { data: groups, isLoading: groupsLoading, isError: groupsError, refetch: refetchGroups } = useFetchGroups();
-  const { data: startData, isLoading: startDataLoading, isError: startDataError, refetch: refetchStartData } = useFetchStartData();
+  const { data: startData2, isLoading: startData2Loading, isError: startData2Error, refetch: refetchStartData2 } = useFetchStartData2();
   const { data: relations, isLoading: relationsLoading, isError: relationsError, refetch: refetchRelations } = useFetchRelations();
+  // const { data: startData, isLoading: startDataLoading, isError: startDataError} = useFetchStartData()
 
-  const HomeLoading = groupsLoading || startDataLoading || relationsLoading;
-  const HomeError = groupsError || startDataError || relationsError;
+  const HomeLoading = groupsLoading || startData2Loading || relationsLoading;
+  const HomeError = groupsError || startData2Error || relationsError;
 
   if (HomeError) {
     const handleRetry = () => {
       refetchGroups();
-      refetchStartData();
+      refetchStartData2();
       refetchRelations();
     };
 
@@ -67,12 +68,15 @@ export const Home = () => {
     );
   }
 
+
+
+
   return (
     <>
       <header className="sticky -top-10 w-full flex flex-col items-center justify-center bg-white z-10 mb-4">
         <div className="h-10 bg-logo flex items-center justify-center w-full">
           <p className="font-iranyekanBold text-white text-sm">
-            {startData?.setting.fldEtelaResani || "با وبکام همیشه آنلاین باشید"}
+            {startData2?.setting.fldEtelaResani || "با وبکام همیشه آنلاین باشید"}
           </p>
         </div>
         <div className="h-16 flex items-center justify-center">
@@ -86,9 +90,9 @@ export const Home = () => {
             {HomeLoading ? (
               <Skeleton width={150} height={150} />
             ) : (
-              <HomeTitleSection icon={startData?.setting.fldImageSliderLink} />
+              <HomeTitleSection icon={startData2?.setting.fldImageSliderLink} />
             )}
-            <div className="flex items-center justify-center pr-24 overflow-x-scroll snap-proximity snap-x scroll-smooth">
+            <div className="flex items-center justify-center pr-16 overflow-x-scroll snap-proximity snap-x scroll-smooth">
               {HomeLoading ? (
                 <div className="flex gap-2 ml-[90px] mb-10">
                   <SkeletonAvatar />
@@ -112,7 +116,7 @@ export const Home = () => {
               <SkeletonProductList />
             </>
           ) : (
-            groups?.mGroup.map((item, index) => <BestSellField key={index} data={item} />)
+            groups?.mGroup.map((item, index) => <BestSellField key={index} data={item} groups={groups} />)
           )}
         </div>
       </main>
