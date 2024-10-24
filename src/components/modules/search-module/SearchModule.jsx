@@ -26,7 +26,7 @@ const SearchModule = ({ companyName }) => {
   };
 
   return (
-    <div>
+    <div className="w-full h-14 bg-white flex items-center justify-center">
       <div onClick={showDrawer} className="w-[92vw] sm:w-[370px] h-11 border-gray-300 rounded-3xl flex items-center bg-background">
         <div  className="w-9 h-9 bg-background flex items-center justify-center rounded-full">
           <IoSearch className="text-menu-lg mr-3 text-gray-400" />

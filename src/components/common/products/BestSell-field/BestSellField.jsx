@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { ProductsCard } from "../products-card/ProductsCard";
-import { useGetArticleByGroup } from "../../../../api/useMutation/GetArticleByGroup";
-import { Button, message } from "antd";
 import { useGetArticleByGroupPaging } from "../../../../api/useMutation/GetArticleByGroupPaging";
 import { Link } from "react-router-dom";
+import { Skeleton } from "antd"; // Import Ant Design Skeleton
 
 export const BestSellField = ({ data, groups }) => {
-  const { mutate: GetArticleByGroup } = useGetArticleByGroupPaging();
+  const { mutate: GetArticleByGroup, isPending: GetArticleByGroupPending } =
+    useGetArticleByGroupPaging();
   const [articles, setArticles] = useState([]); // State to hold the fetched articles
 
   useEffect(() => {
@@ -40,11 +40,26 @@ export const BestSellField = ({ data, groups }) => {
     <div className="w-full my-2 mx-2">
       <div className="flex items-start justify-between pl-3 w-full">
         <p className="mb-4 mx-4 font-iranyekanBold">{data?.groupName}</p>
-        <Link className="text-xs pt-1 text-logo ">مشاهده بیشتر</Link>
+        <Link className="text-xs pt-1 text-logo">مشاهده بیشتر</Link>
       </div>
+
       <div className="flex items-center flex-nowrap overflow-x-auto snap-mandatory snap-x px-2 scroll-px-6">
-        {articles?.length > 0 ? (
-          // Render each article inside ProductsCard
+        {GetArticleByGroupPending ? (
+          // Display skeleton loader when pending
+          <>
+            {[...Array(5)].map((_, index) => (
+              <div
+                key={index}
+                className="min-w-[150px] min-h-[230px] border-b shadow-lg rounded-lg mx-2 "
+              >
+                <Skeleton.Image active style={{ width: 149, height: 140 }} />
+                <Skeleton active paragraph={{ rows: 1 }} title={false} className="mt-3 mx-2" />
+                <Skeleton active paragraph={{ rows: 1 }} title={false} className="mt-3 mx-2" />
+              </div>
+            ))}
+          </>
+        ) : articles?.length > 0 ? (
+          // Render each article inside ProductsCard when data is available
           articles?.map((item) => (
             <ProductsCard
               key={item.fldId}

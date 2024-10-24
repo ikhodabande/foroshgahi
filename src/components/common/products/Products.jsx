@@ -62,7 +62,7 @@ export const Products = () => {
         <PageHeader PageName={"محصولات"} />
       </header>
       <main>
-        <div className="flex items-center justify-center pt-16 pb-4 sticky top-0">
+        <div className="flex items-center justify-center pt-14 pb-4 sticky top-0">
           <SearchModule companyName={"محصولات وبکام"} />
         </div>
         <div className="grid grid-cols-1 gap-2 max-w-[100vw] pb-16 mx-auto overflow-x-auto snap-mandatory snap-x px-4 scroll-px-6">
